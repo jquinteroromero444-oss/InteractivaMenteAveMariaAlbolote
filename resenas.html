@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="web_standard" name="shell-type"/>
+  <title>Expositorio de Reseñas · InteractivaMente · Ave María Albolote</title>
+
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+      main > :first-child {
+        margin-top: 0 !important;
+      }
+      main > :last-child {
+        margin-bottom: 0 !important;
+      }
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00355f;
+    }
+    html.font-large {
+      font-size: 115%;
+    }
+    html.high-contrast {
+      filter: contrast(130%);
+    }
+    html.high-contrast body {
+      background-color: #ffffff !important;
+      color: #000000 !important;
+    }
+  </style>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#00355f",
+            "primary-container": "#0f243e",
+            secondary: "#0051d5",
+            surface: "#f8fafc",
+            "on-surface": "#0f172a"
+          },
+          fontFamily: {
+            headline: ["Outfit", "sans-serif"],
+            body: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-[#f8fafc] font-body text-slate-800 antialiased selection:bg-[#00355f] selection:text-white flex flex-col min-h-screen">
+
+  <!-- ENCABEZADO FIJO -->
+  <header class="fixed top-0 left-0 right-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-[0_1px_8px_rgba(15,23,42,0.06)] border-b border-slate-200">
+    <div class="h-20 max-w-[1280px] mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
+      
+      <div class="flex items-center gap-6">
+        <a class="flex items-center gap-3 group" href="index.html">
+          <img alt="Colegio Ave María Albolote" class="h-10 w-auto object-contain shrink-0" 
+               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE3XwAuIShH-rGhXMgUOJDYsf_Sy9pz86dSXSEqVi_E1JAh3TiS67TlWVppXvkBv_Qf-5osHUjrvR1lS62T8FX6-sxDu06V-9EmtGyZ58PoYwNlP9sFXI90LlqKax7-zOqxJKEg4WmUw4UtE-f4iF8azeY4p2ViOu1efl0W-f8w6U_DiEhV1it5XopYzOW5i1sdMRdHi83WhersNEEP0cKGMCTq8_yOkkyv29_dEraujTt8T1zKRCM0Q"/>
+          <div class="flex items-baseline gap-1 font-headline">
+            <span class="text-xl font-bold text-[#00355f]">InteractivaMente</span>
+            <span class="hidden sm:inline text-sm text-slate-500 font-normal">: tu guía de lectura</span>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-2">
+          <a class="text-slate-600 hover:text-[#00355f] font-medium text-sm px-4 py-2 rounded-full transition-colors hover:bg-slate-100" href="index.html">Inicio</a>
+          <a aria-current="page" class="bg-[#00355f] text-white font-medium text-sm rounded-full px-4 py-2 shadow-sm transition-all" href="resenas.html">Reseñas</a>
+          <a class="text-slate-600 hover:text-[#00355f] font-medium text-sm px-4 py-2 rounded-full transition-colors hover:bg-slate-100" href="escribir.html">Escribir reseña</a>
+          <a class="text-slate-600 hover:text-[#00355f] font-medium text-sm px-4 py-2 rounded-full transition-colors hover:bg-slate-100" href="perfil.html">Mi perfil</a>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- Accesibilidad -->
+        <div class="flex items-center gap-1.5 border-l border-slate-200 pl-3">
+          <button onclick="toggleFuenteGrande()" title="Agrandar letra" class="h-9 px-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all flex items-center border border-slate-200">
+            A+
+          </button>
+          <button onclick="toggleAltoContraste()" title="Alto contraste" class="h-9 px-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all flex items-center border border-slate-200">
+            <span class="material-symbols-outlined text-[18px]">contrast</span>
+          </button>
+        </div>
+
+        <!-- Usuario activo -->
+        <a href="perfil.html" class="flex items-center gap-2 pl-2">
+          <div class="flex flex-col items-end hidden sm:flex">
+            <span class="text-sm font-semibold text-slate-900 leading-tight">L.</span>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 font-semibold border border-slate-200">3º ESO</span>
+          </div>
+          <div class="w-10 h-10 rounded-full bg-[#00355f] flex items-center justify-center text-white font-headline font-bold text-sm shadow-md ring-2 ring-slate-200">
+            L
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="w-full pt-20 flex-grow">
+    
+    <!-- CABECERA DE SECCIÓN CON TABS -->
+    <section class="w-full bg-white border-b border-slate-200 pt-6 pb-8">
+      <div class="max-w-[1280px] mx-auto px-4 md:px-6 flex flex-col gap-6">
+        
+        <!-- Breadcrumbs e indicador pedagógico -->
+        <div class="flex flex-wrap items-center justify-between gap-3 text-slate-600 text-sm">
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center gap-1.5 text-[#00355f] font-semibold">
+              <span class="material-symbols-outlined text-[18px]">shelves</span> El expositorio
+            </span>
+            <span class="text-slate-300 font-bold">/</span>
+            <span class="text-slate-700 font-medium">Vitrina colectiva</span>
+            <span class="text-slate-300 font-bold">/</span>
+            <span class="bg-slate-100 text-slate-700 font-semibold px-2.5 py-0.5 rounded-full text-xs">Colegio Ave María Albolote</span>
+          </div>
+          <div class="hidden sm:flex items-center gap-2 text-xs text-slate-500 font-medium">
+            <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+            <span>Lecturas recomendadas y validadas por el Departamento de Lengua y Literatura</span>
+          </div>
+        </div>
+
+        <!-- Título y contador -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div class="flex flex-col gap-1 max-w-3xl">
+            <span class="text-xs font-bold text-[#0051d5] uppercase tracking-wider">Expositorio literario escolar</span>
+            <h1 id="active-tab-heading" class="font-headline text-3xl font-bold text-[#00355f] tracking-tight">
+              InteractivaMente: tu guía de lectura - Expositorio de reseñas
+            </h1>
+            <p id="active-tab-desc" class="text-sm text-slate-600">
+              Explora las reseñas compartidas por el alumnado de Secundaria de Ave María Albolote. Críticas honestas, reflexivas y adecuadas para nuestra comunidad educativa.
+            </p>
+          </div>
+          <div class="flex items-center gap-3 bg-slate-50 border border-slate-200 shadow-xs rounded-2xl px-4 py-3 shrink-0">
+            <div class="w-10 h-10 rounded-xl bg-white text-[#0051d5] flex items-center justify-center shadow-xs border border-slate-200">
+              <span class="material-symbols-outlined text-[24px]">auto_stories</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-xs text-slate-500 font-medium">Total en catálogo</span>
+              <span id="tab-total-badge" class="font-headline text-lg text-slate-900 font-bold">19 reseñas activas</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pestañas de selección de sección (Primaria / Secundaria / Profesorado) -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+          
+          <button id="tab-btn-primaria" onclick="switchSection('primaria')" type="button"
+                  class="flex items-center justify-between p-3.5 rounded-2xl transition-all duration-200 text-left bg-slate-50 border border-slate-200 hover:border-slate-300 group">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-white border border-slate-200 text-slate-600 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <span class="material-symbols-outlined text-[20px]">child_care</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-sm text-slate-900 font-bold">Primaria</span>
+                <span class="text-xs text-slate-500">Etapa Primaria</span>
+              </div>
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-200 text-slate-700">0</span>
+          </button>
+
+          <button id="tab-btn-secundaria" onclick="switchSection('secundaria')" type="button"
+                  class="flex items-center justify-between p-3.5 rounded-2xl transition-all duration-200 text-left bg-[#00355f] text-white shadow-md border border-[#00355f] group">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-white/10 text-white flex items-center justify-center group-hover:scale-105 transition-transform">
+                <span class="material-symbols-outlined text-[20px]">menu_book</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-sm font-bold text-white">Secundaria</span>
+                <span class="text-xs text-slate-300">Etapa Secundaria (Activa)</span>
+              </div>
+            </div>
+            <span id="secundaria-count-badge" class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-white/20 text-white">8</span>
+          </button>
+
+          <button id="tab-btn-profesorado" onclick="switchSection('profesorado')" type="button"
+                  class="flex items-center justify-between p-3.5 rounded-2xl transition-all duration-200 text-left bg-slate-50 border border-slate-200 hover:border-slate-300 group">
+            <div class="flex items-center gap-3">
+              <div class="w-9 h-9 rounded-xl bg-white border border-slate-200 text-slate-600 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <span class="material-symbols-outlined text-[20px]">local_library</span>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-sm text-slate-900 font-bold">Profesorado</span>
+                <span class="text-xs text-slate-500">Guías y docentes</span>
+              </div>
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-200 text-slate-700">0</span>
+          </button>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ÁREA DE CONTENIDO Y FILTROS -->
+    <div class="w-full max-w-[1280px] mx-auto px-4 md:px-6 py-8 flex flex-col gap-6">
+
+      <!-- ================= VISTA: SECUNDARIA ================= -->
+      <div id="view-secundaria" class="flex flex-col gap-6">
+        
+        <!-- Barra de filtros reactivos -->
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs flex flex-col gap-4">
+          
+          <!-- Búsqueda, rating y ordenación -->
+          <div class="flex flex-col lg:flex-row gap-4 items-stretch lg:items-center justify-between">
+            <div class="flex-1 flex flex-col gap-1">
+              <label class="text-xs font-bold text-slate-700" for="search-input">Buscar reseñas de Secundaria</label>
+              <div class="relative flex-1">
+                <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">search</span>
+                <input id="search-input" oninput="handleSearch(this.value)" 
+                       class="w-full pl-11 pr-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-[#00355f] transition-all" 
+                       placeholder="Buscar por título, autor o curso del estudiante..." type="search"/>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap sm:flex-nowrap items-end gap-3">
+              <!-- Filtro de Nota -->
+              <div class="flex items-center bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-700 text-xs font-semibold">
+                <span class="material-symbols-outlined text-amber-500 mr-1.5 text-[18px]">star</span>
+                <select id="filter-rating" onchange="applyAllFilters()" class="bg-transparent text-slate-800 focus:outline-none pr-1 font-semibold cursor-pointer">
+                  <option value="all">Todas las notas</option>
+                  <option value="5">Solo 5 ★</option>
+                  <option value="4">4+ ★</option>
+                </select>
+              </div>
+
+              <!-- Filtro de Orden -->
+              <div class="flex items-center bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-slate-700 text-xs font-semibold">
+                <span class="material-symbols-outlined text-[#0051d5] mr-1.5 text-[18px]">sort</span>
+                <select id="sort-select" onchange="applyAllFilters()" class="bg-transparent text-slate-800 focus:outline-none pr-1 font-semibold cursor-pointer">
+                  <option value="recent">Más recientes</option>
+                  <option value="rated">Mejor valoradas</option>
+                  <option value="title">Título (A-Z)</option>
+                </select>
+              </div>
+
+              <!-- Botón restablecer -->
+              <button onclick="resetAllFilters()" type="button" 
+                      class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-slate-600 hover:text-[#00355f] hover:bg-slate-100 transition-colors text-xs font-semibold border border-transparent hover:border-slate-200">
+                <span class="material-symbols-outlined text-[18px]">restart_alt</span> Restablecer
+              </button>
+            </div>
+          </div>
+
+          <!-- Píldoras de Género -->
+          <div class="flex flex-col gap-2 pt-1 border-t border-slate-100">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-slate-700">Filtrar por género literario:</span>
+              <span id="active-count-label" class="text-xs font-medium text-slate-500">Mostrando lecturas recomendadas</span>
+            </div>
+            <div id="genre-pills" class="flex flex-wrap items-center gap-2">
+              <button onclick="setGenreFilter('all', this)" class="genre-pill px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all bg-[#00355f] text-white shadow-xs" type="button">Todos</button>
+              <button onclick="setGenreFilter('misterio', this)" class="genre-pill px-3.5 py-1.5 rounded-full text-xs font-medium transition-all bg-slate-100 text-slate-700 hover:bg-slate-200" type="button">Misterio e investigación</button>
+              <button onclick="setGenreFilter('historia', this)" class="genre-pill px-3.5 py-1.5 rounded-full text-xs font-medium transition-all bg-slate-100 text-slate-700 hover:bg-slate-200" type="button">Historia y drama</button>
+              <button onclick="setGenreFilter('fantasia', this)" class="genre-pill px-3.5 py-1.5 rounded-full text-xs font-medium transition-all bg-slate-100 text-slate-700 hover:bg-slate-200" type="button">Fantasía y aventuras</button>
+              <button onclick="setGenreFilter('social', this)" class="genre-pill px-3.5 py-1.5 rounded-full text-xs font-medium transition-all bg-slate-100 text-slate-700 hover:bg-slate-200" type="button">Drama social y solidaridad</button>
+              <button onclick="setGenreFilter('bullying', this)" class="genre-pill px-3.5 py-1.5 rounded-full text-xs font-medium transition-all bg-slate-100 text-slate-700 hover:bg-slate-200" type="button">Convivencia escolar</button>
+            </div>
+          </div>
+
+          <!-- Píldoras de Edad / Etapa -->
+          <div class="flex flex-wrap items-center gap-2 pt-1">
+            <span class="text-xs font-bold text-slate-700 mr-1">Etapa o edad sugerida:</span>
+            <button onclick="setAgeFilter('all', this)" class="age-pill px-3 py-1 rounded-full text-xs font-semibold transition-colors bg-[#00355f] text-white" type="button">Todas las etapas</button>
+            <button onclick="setAgeFilter('12', this)" class="age-pill px-3 py-1 rounded-full text-xs font-medium transition-colors bg-slate-100 text-slate-700 hover:bg-slate-200" type="button">12-13 años (1º-2º ESO)</button>
+            <button onclick="setAgeFilter('14', this)" class="age-pill px-3 py-1 rounded-full text-xs font-medium transition-colors bg-slate-100 text-slate-700 hover:bg-slate-200" type="button">14-16 años (3º-4º ESO)</button>
+          </div>
+
+        </div>
+
+        <!-- Banner de Filtro Activo por Título Concreto -->
+        <div id="grouped-filter-banner" class="hidden items-center justify-between p-3.5 bg-slate-100 rounded-xl text-slate-800 text-sm border border-slate-300">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[20px] text-[#0051d5]">filter_alt</span>
+            <span>Filtrando todas las opiniones de: <strong id="grouped-book-title" class="text-slate-900"></strong></span>
+          </div>
+          <button onclick="resetBookFilter()" class="underline font-bold text-[#0051d5] hover:text-[#00355f]" type="button">
+            Ver todas las reseñas
+          </button>
+        </div>
+
+        <!-- Mosaico de Reseñas de Secundaria -->
+        <div id="review-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
+          <!-- Renderizado dinámico desde script -->
+        </div>
+
+      </div>
+
+      <!-- ================= VISTA VACÍA: PRIMARIA ================= -->
+      <div id="view-primaria" class="hidden flex-col items-center justify-center py-16 px-6 bg-white border border-slate-200 rounded-3xl shadow-xs text-center">
+        <div class="w-20 h-20 rounded-full bg-slate-100 text-[#0051d5] flex items-center justify-center mb-4">
+          <span class="material-symbols-outlined text-[40px]">child_care</span>
+        </div>
+        <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-semibold mb-2">
+          Etapa Primaria
+        </span>
+        <h3 class="font-headline text-2xl font-bold text-slate-900 max-w-lg mb-2">
+          Aún no hay reseñas de Primaria
+        </h3>
+        <p class="text-sm text-slate-600 max-w-md mb-6">
+          Sé la primera persona en recomendar una lectura. Los compañeros de Primaria esperan descubrir tus historias y aventuras favoritas.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <a href="escribir.html" class="px-6 py-3 rounded-full bg-[#00355f] hover:bg-[#0f243e] text-white text-sm font-semibold shadow-sm transition-all flex items-center gap-2">
+            <span class="material-symbols-outlined text-[20px]">edit_note</span>
+            Escribir la primera reseña de Primaria
+          </a>
+          <button onclick="switchSection('secundaria')" class="px-5 py-3 rounded-full bg-slate-100 hover:bg-slate-200 text-[#00355f] text-sm font-semibold transition-colors" type="button">
+            Volver a Secundaria
+          </button>
+        </div>
+      </div>
+
+      <!-- ================= VISTA VACÍA: PROFESORADO ================= -->
+      <div id="view-profesorado" class="hidden flex-col items-center justify-center py-16 px-6 bg-white border border-slate-200 rounded-3xl shadow-xs text-center">
+        <div class="w-20 h-20 rounded-full bg-slate-100 text-[#0051d5] flex items-center justify-center mb-4">
+          <span class="material-symbols-outlined text-[40px]">history_edu</span>
+        </div>
+        <span class="px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-semibold mb-2">
+          Claustro Docente
+        </span>
+        <h3 class="font-headline text-2xl font-bold text-slate-900 max-w-lg mb-2">
+          Guías docentes en preparación
+        </h3>
+        <p class="text-sm text-slate-600 max-w-md mb-6">
+          El equipo de profesores de Lengua y Literatura está preparando las guías transversales y recomendaciones curriculares para este trimestre.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <button onclick="switchSection('secundaria')" class="px-6 py-3 rounded-full bg-[#00355f] hover:bg-[#0f243e] text-white text-sm font-semibold shadow-sm transition-all" type="button">
+            Explorar reseñas de Secundaria
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- MODAL DE LECTURA RÁPIDA DE RESEÑA -->
+  <div id="review-modal" class="fixed inset-0 z-[90] hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-lg rounded-2xl shadow-2xl border border-slate-200 p-6 flex flex-col gap-4 animate-in fade-in zoom-in-95 duration-150">
+      <div class="flex items-start justify-between">
+        <div>
+          <span class="text-xs font-bold text-[#0051d5] uppercase tracking-wider">Ficha escolar de opinión</span>
+          <h3 id="modal-title" class="font-headline text-xl font-bold text-slate-900 mt-0.5">Título de la obra</h3>
+          <p id="modal-author" class="text-xs text-slate-500">Autor</p>
+        </div>
+        <button onclick="closeReviewModal()" class="text-slate-400 hover:text-slate-600 p-1">
+          <span class="material-symbols-outlined text-[24px]">close</span>
+        </button>
+      </div>
+
+      <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center gap-2">
+        <span class="material-symbols-outlined text-[#00355f] text-[20px]">person</span>
+        <span id="modal-student" class="text-xs font-semibold text-slate-800">Estudiante</span>
+      </div>
+
+      <p id="modal-text" class="text-sm text-slate-700 leading-relaxed italic bg-slate-50/50 p-4 rounded-xl border border-slate-100 max-h-60 overflow-y-auto">
+        "Texto de la reseña..."
+      </p>
+
+      <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+        <a id="modal-link-detail" href="#" class="inline-flex items-center gap-1.5 text-sm font-bold text-[#00355f] hover:underline">
+          <span>Ver ficha completa con comentarios</span>
+          <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+        </a>
+        <button onclick="closeReviewModal()" class="px-4 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold transition-colors">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="w-full bg-slate-100 border-t border-slate-200 mt-auto">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <img alt="Colegio Ave María Albolote" class="h-7 w-auto object-contain" 
+             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE3XwAuIShH-rGhXMgUOJDYsf_Sy9pz86dSXSEqVi_E1JAh3TiS67TlWVppXvkBv_Qf-5osHUjrvR1lS62T8FX6-sxDu06V-9EmtGyZ58PoYwNlP9sFXI90LlqKax7-zOqxJKEg4WmUw4UtE-f4iF8azeY4p2ViOu1efl0W-f8w6U_DiEhV1it5XopYzOW5i1sdMRdHi83WhersNEEP0cKGMCTq8_yOkkyv29_dEraujTt8T1zKRCM0Q"/>
+        <span class="text-sm text-slate-800 font-semibold">© 2026 InteractivaMente: tu guía de lectura · Ave María Albolote</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-6 text-sm text-slate-600">
+        <a class="hover:text-[#00355f] transition-colors" href="resenas.html">Guía de lectura</a>
+        <a class="hover:text-[#00355f] transition-colors" href="#">Privacidad escolar</a>
+        <a class="hover:text-[#00355f] transition-colors" href="#">Protocolo de convivencia</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="data.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    let currentGenre = 'all';
+    let currentAge = 'all';
+    let currentBookFilter = null;
+    let currentSearch = '';
+
+    // Cambio de sección (Primaria, Secundaria, Profesorado)
+    function switchSection(section) {
+      const heading = document.getElementById('active-tab-heading');
+      const desc = document.getElementById('active-tab-desc');
+      const viewSec = document.getElementById('view-secundaria');
+      const viewPrim = document.getElementById('view-primaria');
+      const viewProf = document.getElementById('view-profesorado');
+
+      const btnPrim = document.getElementById('tab-btn-primaria');
+      const btnSec = document.getElementById('tab-btn-secundaria');
+      const btnProf = document.getElementById('tab-btn-profesorado');
+
+      [btnPrim, btnSec, btnProf].forEach(btn => {
+        btn.className = "flex items-center justify-between p-3.5 rounded-2xl transition-all duration-200 text-left bg-slate-50 border border-slate-200 hover:border-slate-300 group";
+        const iconC = btn.querySelector('div > div');
+        if (iconC) iconC.className = "w-9 h-9 rounded-xl bg-white border border-slate-200 text-slate-600 flex items-center justify-center group-hover:scale-105 transition-transform";
+        const tSpan = btn.querySelector('.text-sm');
+        if (tSpan) tSpan.className = "text-sm text-slate-900 font-bold";
+        const sSpan = btn.querySelector('.text-xs');
+        if (sSpan) sSpan.className = "text-xs text-slate-500";
+        const bdg = btn.querySelector('span:last-child');
+        if (bdg) bdg.className = "px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-200 text-slate-700";
+      });
+
+      viewSec.classList.add('hidden');
+      viewPrim.classList.add('hidden');
+      viewProf.classList.add('hidden');
+
+      if (section === 'secundaria') {
+        heading.innerText = 'Reseñas de Secundaria';
+        desc.innerText = 'Explora las reseñas compartidas por el alumnado de Secundaria de Ave María Albolote.';
+        btnSec.className = "flex items-center justify-between p-3.5 rounded-2xl transition-all duration-200 text-left bg-[#00355f] text-white shadow-md border border-[#00355f] group";
+        const iconC = btnSec.querySelector('div > div');
+        if (iconC) iconC.className = "w-9 h-9 rounded-xl bg-white/10 text-white flex items-center justify-center group-hover:scale-105 transition-transform";
+        const tSpan = btnSec.querySelector('.text-sm');
+        if (tSpan) tSpan.className = "text-sm font-bold text-white";
+        const sSpan = btnSec.querySelector('.text-xs');
+        if (sSpan) sSpan.className = "text-xs text-slate-300";
+        const bdg = btnSec.querySelector('span:last-child');
+        if (bdg) bdg.className = "px-2.5 py-0.5 rounded-full text-xs font-semibold bg-white/20 text-white";
+        viewSec.classList.remove('hidden');
+      } else if (section === 'primaria') {
+        heading.innerText = 'Reseñas de Primaria';
+        desc.innerText = 'Lecturas, cómics y libros recomendados de la etapa Primaria.';
+        btnPrim.className = "flex items-center justify-between p-3.5 rounded-2xl transition-all duration-200 text-left bg-[#00355f] text-white shadow-md border border-[#00355f] group";
+        const iconC = btnPrim.querySelector('div > div');
+        if (iconC) iconC.className = "w-9 h-9 rounded-xl bg-white/10 text-white flex items-center justify-center group-hover:scale-105 transition-transform";
+        const tSpan = btnPrim.querySelector('.text-sm');
+        if (tSpan) tSpan.className = "text-sm font-bold text-white";
+        const sSpan = btnPrim.querySelector('.text-xs');
+        if (sSpan) sSpan.className = "text-xs text-slate-300";
+        const bdg = btnPrim.querySelector('span:last-child');
+        if (bdg) bdg.className = "px-2.5 py-0.5 rounded-full text-xs font-semibold bg-white/20 text-white";
+        viewPrim.classList.remove('hidden');
+      } else if (section === 'profesorado') {
+        heading.innerText = 'Reseñas del profesorado';
+        desc.innerText = 'Recomendaciones y guías literarias redactadas por el claustro docente de Ave María Albolote.';
+        btnProf.className = "flex items-center justify-between p-3.5 rounded-2xl transition-all duration-200 text-left bg-[#00355f] text-white shadow-md border border-[#00355f] group";
+        const iconC = btnProf.querySelector('div > div');
+        if (iconC) iconC.className = "w-9 h-9 rounded-xl bg-white/10 text-white flex items-center justify-center group-hover:scale-105 transition-transform";
+        const tSpan = btnProf.querySelector('.text-sm');
+        if (tSpan) tSpan.className = "text-sm font-bold text-white";
+        const sSpan = btnProf.querySelector('.text-xs');
+        if (sSpan) sSpan.className = "text-xs text-slate-300";
+        const bdg = btnProf.querySelector('span:last-child');
+        if (bdg) bdg.className = "px-2.5 py-0.5 rounded-full text-xs font-semibold bg-white/20 text-white";
+        viewProf.classList.remove('hidden');
+      }
+    }
+
+    // Modal de previsualización
+    function openReviewModal(title, author, student, fullText, reviewId) {
+      document.getElementById('modal-title').innerText = title;
+      document.getElementById('modal-author').innerText = author;
+      document.getElementById('modal-student').innerText = student;
+      document.getElementById('modal-text').innerText = `"${fullText}"`;
+      document.getElementById('modal-link-detail').href = `detalle.html?id=${reviewId}`;
+      document.getElementById('review-modal').classList.remove('hidden');
+    }
+
+    function closeReviewModal() {
+      document.getElementById('review-modal').classList.add('hidden');
+    }
+
+    // Filtros de búsqueda
+    function handleSearch(val) {
+      currentSearch = val.toLowerCase().trim();
+      applyAllFilters();
+    }
+
+    function setGenreFilter(genre, btn) {
+      currentGenre = genre;
+      document.querySelectorAll('.genre-pill').forEach(b => {
+        b.className = "genre-pill px-3.5 py-1.5 rounded-full text-xs font-medium transition-all bg-slate-100 text-slate-700 hover:bg-slate-200";
+      });
+      btn.className = "genre-pill px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all bg-[#00355f] text-white shadow-xs";
+      applyAllFilters();
+    }
+
+    function setAgeFilter(age, btn) {
+      currentAge = age;
+      document.querySelectorAll('.age-pill').forEach(b => {
+        b.className = "age-pill px-3 py-1 rounded-full text-xs font-medium transition-colors bg-slate-100 text-slate-700 hover:bg-slate-200";
+      });
+      btn.className = "age-pill px-3 py-1 rounded-full text-xs font-semibold transition-colors bg-[#00355f] text-white";
+      applyAllFilters();
+    }
+
+    function filterByBook(title) {
+      currentBookFilter = title;
+      const banner = document.getElementById('grouped-filter-banner');
+      const allMatching = window.appStore.getReviewsByBook(title);
+      document.getElementById('grouped-book-title').innerText = `${title} (${allMatching.length} disponibles)`;
+      banner.classList.remove('hidden');
+      banner.classList.add('flex');
+      applyAllFilters();
+    }
+
+    function resetBookFilter() {
+      currentBookFilter = null;
+      const banner = document.getElementById('grouped-filter-banner');
+      banner.classList.add('hidden');
+      banner.classList.remove('flex');
+      applyAllFilters();
+    }
+
+    function resetAllFilters() {
+      document.getElementById('search-input').value = '';
+      currentSearch = '';
+      currentGenre = 'all';
+      currentAge = 'all';
+      currentBookFilter = null;
+      document.getElementById('filter-rating').value = 'all';
+      document.getElementById('sort-select').value = 'recent';
+      document.getElementById('grouped-filter-banner').classList.add('hidden');
+
+      const firstGenre = document.querySelector('.genre-pill');
+      if (firstGenre) setGenreFilter('all', firstGenre);
+      const firstAge = document.querySelector('.age-pill');
+      if (firstAge) setAgeFilter('all', firstAge);
+
+      applyAllFilters();
+    }
+
+    // Aplicar todos los filtros y re-renderizar la cuadrícula
+    function applyAllFilters() {
+      if (!window.appStore) return;
+
+      const minRating = document.getElementById('filter-rating').value;
+      const sortCriteria = document.getElementById('sort-select').value;
+      let reviews = window.appStore.getReviews();
+
+      // Filtrar
+      let filtered = reviews.filter(rev => {
+        const matchesQuery = !currentSearch || 
+          rev.bookTitle.toLowerCase().includes(currentSearch) ||
+          rev.author.toLowerCase().includes(currentSearch) ||
+          rev.studentName.toLowerCase().includes(currentSearch) ||
+          rev.reviewText.toLowerCase().includes(currentSearch);
+
+        const matchesGenre = currentGenre === 'all' || rev.genre === currentGenre;
+        const matchesAge = currentAge === 'all' || rev.ageRange === currentAge;
+        const matchesBook = !currentBookFilter || rev.bookTitle.toLowerCase() === currentBookFilter.toLowerCase();
+        
+        let matchesRating = true;
+        if (minRating === '5' && rev.rating < 5) matchesRating = false;
+        if (minRating === '4' && rev.rating < 4) matchesRating = false;
+
+        return matchesQuery && matchesGenre && matchesAge && matchesBook && matchesRating;
+      });
+
+      // Ordenar
+      if (sortCriteria === 'rated') {
+        filtered.sort((a, b) => b.rating - a.rating);
+      } else if (sortCriteria === 'title') {
+        filtered.sort((a, b) => a.bookTitle.localeCompare(b.bookTitle));
+      }
+
+      renderReviewGrid(filtered);
+
+      const countLabel = document.getElementById('active-count-label');
+      if (countLabel) {
+        countLabel.innerText = `Mostrando ${toWords(filtered.length)} de ${toWords(reviews.length)} reseñas escolares`;
+      }
+    }
+
+    function renderReviewGrid(reviewsList) {
+      const grid = document.getElementById('review-grid');
+      if (!grid) return;
+
+      if (reviewsList.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full py-16 text-center text-slate-500 bg-white rounded-2xl border border-slate-200 p-8">
+            <span class="material-symbols-outlined text-[48px] text-slate-300 mb-2">search_off</span>
+            <p class="font-headline text-lg font-bold text-slate-800">No encontramos reseñas con esos criterios</p>
+            <p class="text-sm text-slate-500 mt-1 mb-4">Prueba a restablecer los filtros o busca otro título.</p>
+            <button onclick="resetAllFilters()" class="px-5 py-2.5 rounded-full bg-[#00355f] text-white text-xs font-semibold shadow-sm">
+              Restablecer filtros
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = reviewsList.map(rev => {
+        const book = window.appStore.getBookById(rev.bookId) || {
+          coverUrl: '',
+          genreLabel: rev.genre || 'Lectura'
+        };
+
+        const totalForThisBook = window.appStore.getReviewsByBook(rev.bookTitle).length;
+        const letter = rev.bookTitle.charAt(0).toUpperCase();
+
+        return `
+          <article class="group flex flex-col bg-white border border-slate-200 rounded-2xl shadow-xs hover:shadow-md transition-all duration-300 overflow-hidden">
+            
+            <!-- Portada -->
+            <div class="relative w-full aspect-[2/3] bg-slate-100 overflow-hidden">
+              ${book.coverUrl ? `
+                <img src="${book.coverUrl}" alt="Portada de ${rev.bookTitle}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              ` : `
+                <div class="w-full h-full bg-[#00355f] flex items-center justify-center text-white font-headline text-4xl font-bold">
+                  ${letter}
+                </div>
+              `}
+              <div class="absolute top-3 left-3 w-8 h-8 rounded-lg bg-white/95 backdrop-blur-sm flex items-center justify-center font-headline font-bold text-sm text-[#00355f] shadow-sm">
+                ${letter}
+              </div>
+              <div class="absolute top-3 right-3 flex items-center gap-1 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-full shadow-sm text-amber-500 text-xs font-bold">
+                <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                <span>${rev.ratingDecimal || (rev.rating + '.0')}</span>
+              </div>
+              <div class="absolute bottom-3 right-3 bg-[#00355f]/90 text-white text-xs px-2.5 py-0.5 rounded-md font-semibold backdrop-blur-sm">
+                ${rev.ageRange ? rev.ageRange + '+ ESO' : 'Secundaria'}
+              </div>
+            </div>
+
+            <!-- Datos y texto -->
+            <div class="p-4 flex flex-col flex-grow justify-between gap-3">
+              <div class="flex flex-col gap-1.5">
+                <div class="flex items-center gap-1.5">
+                  <span class="px-2 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-[#00355f]">
+                    ${book.genreLabel || rev.genre || 'Lectura'}
+                  </span>
+                  <span class="text-slate-300">•</span>
+                  <span class="text-slate-500 text-xs">${rev.stage === 'secundaria' ? 'Secundaria' : 'Primaria'}</span>
+                </div>
+
+                <h3 class="font-headline text-base font-bold text-slate-900 group-hover:text-[#00355f] transition-colors line-clamp-1">
+                  <a href="detalle.html?id=${rev.id}">${rev.bookTitle}</a>
+                </h3>
+                <p class="text-xs text-slate-500 font-medium">${rev.author}</p>
+
+                <!-- Autor de la reseña -->
+                <div class="flex items-center gap-2 mt-1 py-1 px-2 bg-slate-50 rounded-lg border border-slate-200">
+                  <div class="w-6 h-6 rounded-full bg-[#00355f] text-white flex items-center justify-center font-bold text-[11px]">
+                    ${rev.studentInitial || rev.studentName.charAt(0)}
+                  </div>
+                  <div class="flex flex-col leading-tight">
+                    <span class="text-xs text-slate-900 font-bold">${rev.studentName}</span>
+                    <span class="text-[11px] text-slate-500">${rev.studentGrade} · Ave María Albolote</span>
+                  </div>
+                </div>
+
+                <p class="text-xs text-slate-600 line-clamp-3 mt-1 leading-relaxed italic">
+                  "${rev.reviewText}"
+                </p>
+              </div>
+
+              <!-- Acciones inferiores -->
+              <div class="pt-2 flex flex-col gap-2 border-t border-slate-100">
+                <button onclick="filterByBook('${rev.bookTitle.replace(/'/g, "\\'")}')" type="button"
+                        class="w-full py-1.5 px-2 rounded-lg bg-slate-50 hover:bg-slate-100 text-[#00355f] text-xs font-semibold transition-colors flex items-center justify-center gap-1 border border-slate-200">
+                  <span class="material-symbols-outlined text-[16px] text-[#0051d5]">collections_bookmark</span>
+                  Ver opiniones (${totalForThisBook})
+                </button>
+
+                <div class="flex items-center justify-between text-xs pt-0.5">
+                  <a href="detalle.html?id=${rev.id}" class="font-bold text-[#0051d5] hover:text-[#00355f] flex items-center gap-1">
+                    Leer reseña completa <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                  </a>
+                  <span class="text-slate-400 text-[11px]">${rev.dateText}</span>
+                </div>
+              </div>
+
+            </div>
+
+          </article>
+        `;
+      }).join('');
+    }
+
+    // Inicialización y soporte para parámetros de URL
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const queryParam = urlParams.get('q');
+      const tabParam = urlParams.get('tab');
+
+      if (tabParam) {
+        switchSection(tabParam);
+      } else {
+        switchSection('secundaria');
+      }
+
+      if (queryParam) {
+        document.getElementById('search-input').value = queryParam;
+        currentSearch = queryParam.toLowerCase().trim();
+      }
+
+      applyAllFilters();
+    });
+  </script>
+</body>
+</html>
