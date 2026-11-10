@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="web_standard" name="shell-type"/>
+  <title>InteractivaMente: tu guía de lectura · Ave María Albolote</title>
+  
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+      main > :first-child {
+        margin-top: 0 !important;
+      }
+      main > :last-child {
+        margin-bottom: 0 !important;
+      }
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00355f;
+    }
+    /* Accesibilidad */
+    html.font-large {
+      font-size: 115%;
+    }
+    html.high-contrast {
+      filter: contrast(130%);
+    }
+    html.high-contrast body {
+      background-color: #ffffff !important;
+      color: #000000 !important;
+    }
+  </style>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#00355f",
+            "primary-container": "#0f243e",
+            secondary: "#0051d5",
+            "secondary-container": "#e2e8f0",
+            tertiary: "#334155",
+            surface: "#f8fafc",
+            "on-surface": "#0f172a",
+            "on-surface-variant": "#475569",
+            outline: "#64748b",
+            "outline-variant": "#cbd5e1"
+          },
+          fontFamily: {
+            headline: ["Outfit", "sans-serif"],
+            body: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-[#f8fafc] font-body text-slate-800 antialiased selection:bg-[#00355f] selection:text-white flex flex-col min-h-screen">
+
+  <!-- ENCABEZADO FIJO DE NAVEGACIÓN -->
+  <header class="fixed top-0 left-0 right-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-[0_1px_8px_rgba(15,23,42,0.06)] border-b border-slate-200">
+    <div class="h-20 max-w-[1280px] mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
+      
+      <!-- Logotipo y título -->
+      <div class="flex items-center gap-6">
+        <a class="flex items-center gap-3 group" href="index.html">
+          <img alt="Colegio Ave María Albolote" class="h-10 w-auto object-contain shrink-0" 
+               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE3XwAuIShH-rGhXMgUOJDYsf_Sy9pz86dSXSEqVi_E1JAh3TiS67TlWVppXvkBv_Qf-5osHUjrvR1lS62T8FX6-sxDu06V-9EmtGyZ58PoYwNlP9sFXI90LlqKax7-zOqxJKEg4WmUw4UtE-f4iF8azeY4p2ViOu1efl0W-f8w6U_DiEhV1it5XopYzOW5i1sdMRdHi83WhersNEEP0cKGMCTq8_yOkkyv29_dEraujTt8T1zKRCM0Q"/>
+          <div class="flex items-baseline gap-1 font-headline">
+            <span class="text-xl font-bold text-[#00355f]">InteractivaMente</span>
+            <span class="hidden sm:inline text-sm text-slate-500 font-normal">: tu guía de lectura</span>
+          </div>
+        </a>
+
+        <!-- Enlaces de navegación desktop -->
+        <nav class="hidden lg:flex items-center gap-2">
+          <a aria-current="page" class="bg-[#00355f] text-white font-medium text-sm rounded-full px-4 py-2 shadow-sm transition-all" href="index.html">Inicio</a>
+          <a class="text-slate-600 hover:text-[#00355f] font-medium text-sm px-4 py-2 rounded-full transition-colors hover:bg-slate-100" href="resenas.html">Reseñas</a>
+          <a class="text-slate-600 hover:text-[#00355f] font-medium text-sm px-4 py-2 rounded-full transition-colors hover:bg-slate-100" href="escribir.html">Escribir reseña</a>
+          <a class="text-slate-600 hover:text-[#00355f] font-medium text-sm px-4 py-2 rounded-full transition-colors hover:bg-slate-100" href="perfil.html">Mi perfil</a>
+        </nav>
+      </div>
+
+      <!-- Buscador rápido, accesibilidad y perfil -->
+      <div class="flex items-center gap-3">
+        <!-- Barra de búsqueda interactiva (abre modal ⌘K) -->
+        <div class="hidden md:flex items-center bg-slate-50 rounded-xl px-3.5 py-2 w-64 lg:w-72 border border-slate-200 focus-within:border-[#00355f] focus-within:bg-white transition-all cursor-pointer shadow-xs" data-trigger="search">
+          <span class="material-symbols-outlined text-slate-400 text-[20px] mr-2">search</span>
+          <span class="w-full text-sm text-slate-400">Buscar reseñas, libros...</span>
+          <kbd class="text-[11px] font-semibold text-slate-400 bg-white border border-slate-200 px-1.5 py-0.5 rounded shadow-2xs">⌘K</kbd>
+        </div>
+
+        <!-- Botones de accesibilidad -->
+        <div class="flex items-center gap-1.5 border-l border-slate-200 pl-3">
+          <button onclick="toggleFuenteGrande()" title="Agrandar letra para mayor comodidad visual" class="h-9 px-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all flex items-center gap-1 border border-slate-200">
+            <span>A+</span>
+          </button>
+          <button onclick="toggleAltoContraste()" title="Activar modo de alto contraste" class="h-9 px-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all flex items-center border border-slate-200">
+            <span class="material-symbols-outlined text-[18px]">contrast</span>
+          </button>
+        </div>
+
+        <!-- Avatar del estudiante activo -->
+        <a href="perfil.html" class="flex items-center gap-2 pl-2 hover:opacity-90 transition-opacity">
+          <div class="flex flex-col items-end hidden sm:flex">
+            <span class="text-sm font-semibold text-slate-900 leading-tight">L.</span>
+            <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-700 font-semibold border border-slate-200">3º ESO</span>
+          </div>
+          <div class="w-10 h-10 rounded-full bg-[#00355f] flex items-center justify-center text-white font-headline font-bold text-sm shadow-md ring-2 ring-slate-200">
+            L
+          </div>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="w-full pt-20 flex-grow">
+    
+    <!-- BANNER HERO PRINCIPAL -->
+    <section class="relative w-full overflow-hidden pb-12 bg-gradient-to-b from-slate-100/80 to-transparent">
+      <div class="max-w-[1280px] mx-auto px-4 md:px-6 relative z-10 pt-6">
+        
+        <!-- Píldoras de cabecera -->
+        <div class="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-slate-700 text-sm shadow-xs">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#0051d5]"></span>
+            <span>Red colegial de lectura activa</span>
+            <span class="text-slate-300">·</span>
+            <span class="text-[#00355f] font-bold">Ave María Albolote</span>
+          </div>
+          <div class="inline-flex items-center gap-1.5 text-sm text-[#00355f] bg-white border border-slate-200 px-3.5 py-1.5 rounded-full shadow-xs">
+            <span class="material-symbols-outlined text-[18px] text-[#0051d5]">calendar_month</span>
+            <span class="font-semibold">Curso escolar 2026-2027</span>
+          </div>
+        </div>
+
+        <!-- Titular y Estadísticas -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end mb-8">
+          <div class="lg:col-span-8 flex flex-col gap-3">
+            <div class="flex items-center gap-1.5 text-[#00355f] text-sm font-semibold">
+              <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">local_library</span>
+              <span>Espacio literario y pedagógico</span>
+            </div>
+            <h1 class="font-headline text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight leading-tight">
+              <span class="text-[#00355f]">InteractivaMente</span>: tu guía de lectura
+            </h1>
+            <p class="text-lg text-slate-600 max-w-2xl leading-relaxed">
+              La red de lectura compartida de Ave María Albolote donde alumnado y docentes descubren, recomiendan y debaten sus próximas lecturas.
+            </p>
+          </div>
+
+          <!-- Tarjetas de Estadísticas Reales y Lectores -->
+          <div class="lg:col-span-4 flex flex-col gap-3">
+            <div class="grid grid-cols-3 gap-2 bg-white p-3 rounded-2xl border border-slate-200 shadow-sm">
+              <div class="flex flex-col items-center justify-center p-2 text-center">
+                <span id="stat-total-reviews" class="font-headline text-2xl font-bold text-[#00355f]">19</span>
+                <span class="text-xs text-slate-600 leading-tight mt-1">Reseñas escolares</span>
+              </div>
+              <div class="flex flex-col items-center justify-center p-2 text-center bg-slate-50 rounded-xl">
+                <span id="stat-total-books" class="font-headline text-2xl font-bold text-[#0051d5]">17</span>
+                <span class="text-xs text-slate-700 leading-tight mt-1">Libros comentados</span>
+              </div>
+              <div class="flex flex-col items-center justify-center p-2 text-center">
+                <span id="stat-total-readers" class="font-headline text-2xl font-bold text-[#00355f]">5</span>
+                <span class="text-xs text-slate-600 leading-tight mt-1">Lectores activos</span>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between px-3 py-2 bg-white rounded-xl text-slate-600 text-xs border border-slate-200 shadow-xs">
+              <span class="flex items-center gap-1 font-semibold text-[#00355f]">
+                <span class="material-symbols-outlined text-[16px] text-[#0051d5]">group</span> Lectores:
+              </span>
+              <div class="flex items-center gap-1.5 flex-wrap justify-end">
+                <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-800 font-medium border border-slate-200">P. · 2º ESO</span>
+                <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-800 font-medium border border-slate-200">L. · 3º ESO</span>
+                <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-800 font-medium border border-slate-200">A. · 4º ESO</span>
+                <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-800 font-medium border border-slate-200">M. · 3º ESO</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Barra de búsqueda principal del Hero -->
+        <form onsubmit="handleHeroSearch(event)" class="w-full bg-white rounded-2xl p-2 sm:p-3 border border-slate-200 shadow-sm transition-all focus-within:ring-2 focus-within:ring-[#00355f]/20">
+          <div class="flex flex-col md:flex-row items-center gap-2">
+            <div class="flex items-center w-full px-3 py-2 gap-3 text-slate-900">
+              <span class="material-symbols-outlined text-[#0051d5] text-[24px]">search</span>
+              <input id="hero-search-input" aria-label="Buscar reseñas, títulos o autor" 
+                     class="w-full bg-transparent text-sm sm:text-base text-slate-900 placeholder:text-slate-400 focus:outline-none" 
+                     placeholder="Buscar reseñas, títulos, autor o curso (ej: Holly Jackson, 3º ESO, misterio...)" type="text"/>
+            </div>
+            <div class="flex items-center gap-2 w-full md:w-auto justify-end">
+              <button type="submit" class="w-full md:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#00355f] text-white font-semibold text-sm hover:bg-[#0f243e] transition-all shadow-sm">
+                <span>Explorar</span>
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN 2: TRES GRANDES ACCESOS POR ETAPA ESCOLAR -->
+    <section class="w-full bg-slate-100/70 py-12 border-y border-slate-200">
+      <div class="max-w-[1280px] mx-auto px-4 md:px-6">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-2">
+          <div>
+            <span class="text-xs font-bold text-[#0051d5] uppercase tracking-wider">Catálogo de reseñas</span>
+            <h2 class="font-headline text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mt-1">Explora las tres secciones escolares</h2>
+          </div>
+          <p class="text-sm text-slate-600 max-w-md">Navegación clasificada por etapas educativas y aportaciones pedagógicas del claustro escolar.</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+          
+          <!-- Primaria -->
+          <div class="flex flex-col justify-between bg-white rounded-2xl p-6 border border-slate-200 group relative overflow-hidden shadow-xs">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-slate-300"></div>
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200 text-xs font-bold">
+                  <span class="material-symbols-outlined text-[16px]">child_care</span>Primaria
+                </span>
+                <span class="text-xs text-slate-500 bg-slate-50 px-2.5 py-0.5 rounded border border-slate-200">En preparación</span>
+              </div>
+              <h3 class="font-headline text-xl font-bold text-slate-900 group-hover:text-[#00355f] transition-colors">Reseñas de Primaria</h3>
+              <p class="text-sm text-slate-600 mt-2 mb-4">Rincón lector para alumnos de Primaria. Cuentos, aventuras y lecturas formativas.</p>
+              
+              <div class="w-full bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col items-center justify-center text-center gap-2 min-h-[140px]">
+                <span class="material-symbols-outlined text-[#0051d5] text-[28px]">info</span>
+                <p class="text-sm font-semibold text-slate-800">Las lecturas recomendadas de Primaria se publicarán próximamente</p>
+              </div>
+            </div>
+            <div class="pt-6">
+              <a href="resenas.html?tab=primaria" class="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-full bg-slate-100 text-slate-700 text-sm font-semibold hover:bg-slate-200 hover:text-[#00355f] transition-colors border border-slate-200">
+                <span>Explorar Primaria</span>
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Secundaria (Activa - Destacada) -->
+          <div class="flex flex-col justify-between bg-white rounded-2xl p-6 relative overflow-hidden ring-2 ring-[#00355f] border border-[#00355f]/20 shadow-md transform lg:-translate-y-2">
+            <div class="absolute top-0 left-0 right-0 h-2 bg-[#00355f]"></div>
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#00355f] text-white text-xs font-bold shadow-xs">
+                  <span class="material-symbols-outlined text-[16px]">local_fire_department</span>19 reseñas escolares · Activa
+                </span>
+                <span class="text-xs text-[#0051d5] font-bold">Secundaria</span>
+              </div>
+              <h3 class="font-headline text-xl font-bold text-slate-900">Reseñas de Secundaria</h3>
+              <p class="text-sm text-slate-600 mt-2 mb-4">La sección con mayor debate literario del centro. Novela juvenil, misterio, superación y narrativa contemporánea.</p>
+              
+              <!-- Mosaico interactivo de libros de Secundaria -->
+              <div class="grid grid-cols-4 gap-2 bg-slate-50 border border-slate-200 p-3 rounded-xl mb-2">
+                <a href="detalle.html?id=rev-asesinato-1" class="group/book flex flex-col items-center">
+                  <div class="w-full aspect-[2/3] rounded-lg bg-[#00355f] text-white flex flex-col justify-between p-1.5 shadow-sm overflow-hidden group-hover/book:scale-105 transition-transform">
+                    <span class="font-headline text-xs font-bold pl-0.5">A</span>
+                    <p class="text-[10px] leading-tight truncate text-white/90 font-medium">Asesinato...</p>
+                  </div>
+                  <span class="text-[11px] text-slate-700 mt-1 text-center truncate w-full">Holly J.</span>
+                </a>
+                <a href="detalle.html?id=rev-pijama-rayas" class="group/book flex flex-col items-center">
+                  <div class="w-full aspect-[2/3] rounded-lg bg-[#00355f] text-white flex flex-col justify-between p-1.5 shadow-sm overflow-hidden group-hover/book:scale-105 transition-transform">
+                    <span class="font-headline text-xs font-bold pl-0.5">E</span>
+                    <p class="text-[10px] leading-tight truncate text-white/90 font-medium">El niño...</p>
+                  </div>
+                  <span class="text-[11px] text-slate-700 mt-1 text-center truncate w-full">J. Boyne</span>
+                </a>
+                <a href="detalle.html?id=rev-powerless" class="group/book flex flex-col items-center">
+                  <div class="w-full aspect-[2/3] rounded-lg bg-[#00355f] text-white flex flex-col justify-between p-1.5 shadow-sm overflow-hidden group-hover/book:scale-105 transition-transform">
+                    <span class="font-headline text-xs font-bold pl-0.5">P</span>
+                    <p class="text-[10px] leading-tight truncate text-white/90 font-medium">Powerless</p>
+                  </div>
+                  <span class="text-[11px] text-slate-700 mt-1 text-center truncate w-full">L. Roberts</span>
+                </a>
+                <a href="detalle.html?id=rev-invisible" class="group/book flex flex-col items-center">
+                  <div class="w-full aspect-[2/3] rounded-lg bg-[#00355f] text-white flex flex-col justify-between p-1.5 shadow-sm overflow-hidden group-hover/book:scale-105 transition-transform">
+                    <span class="font-headline text-xs font-bold pl-0.5">I</span>
+                    <p class="text-[10px] leading-tight truncate text-white/90 font-medium">Invisible</p>
+                  </div>
+                  <span class="text-[11px] text-slate-700 mt-1 text-center truncate w-full">E. Moreno</span>
+                </a>
+              </div>
+            </div>
+            <div class="pt-6">
+              <a href="resenas.html?tab=secundaria" class="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-full bg-[#00355f] text-white text-sm font-semibold hover:bg-[#0f243e] transition-all shadow-sm">
+                <span>Explorar Secundaria</span>
+                <span class="material-symbols-outlined text-[18px]">menu_book</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Profesorado -->
+          <div class="flex flex-col justify-between bg-white rounded-2xl p-6 border border-slate-200 group relative overflow-hidden shadow-xs">
+            <div class="absolute top-0 left-0 right-0 h-1.5 bg-slate-500"></div>
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-4">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200 text-xs font-bold">
+                  <span class="material-symbols-outlined text-[16px]">history_edu</span>Claustro docente
+                </span>
+                <span class="text-xs text-slate-500 bg-slate-50 px-2.5 py-0.5 rounded border border-slate-200">En preparación</span>
+              </div>
+              <h3 class="font-headline text-xl font-bold text-slate-900 group-hover:text-[#00355f] transition-colors">Reseñas del Profesorado</h3>
+              <p class="text-sm text-slate-600 mt-2 mb-4">Puntos de vista pedagógicos, lecturas curriculares transversales y sugerencias guiadas.</p>
+              
+              <div class="w-full bg-slate-50 border border-slate-200 rounded-xl p-4 flex flex-col items-center justify-center text-center gap-2 min-h-[140px]">
+                <span class="material-symbols-outlined text-[#0051d5] text-[28px]">school</span>
+                <p class="text-sm font-semibold text-slate-800">Próximas lecturas en preparación por el equipo docente</p>
+              </div>
+            </div>
+            <div class="pt-6">
+              <a href="resenas.html?tab=profesorado" class="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-full bg-slate-100 text-slate-700 text-sm font-semibold hover:bg-slate-200 hover:text-[#00355f] transition-colors border border-slate-200">
+                <span>Ver recomendaciones docentes</span>
+                <span class="material-symbols-outlined text-[18px]">school</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: ÚLTIMAS RESEÑAS DE LA COMUNIDAD -->
+    <section class="w-full py-12 bg-white">
+      <div class="max-w-[1280px] mx-auto px-4 md:px-6">
+        
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4 pb-2 border-b border-slate-100">
+          <div>
+            <div class="flex items-center gap-2 text-[#0051d5] text-xs font-bold uppercase tracking-wider">
+              <span class="material-symbols-outlined text-[18px]">forum</span>
+              <span>Comunidad de Albolote</span>
+            </div>
+            <h2 class="font-headline text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight mt-1">Últimas reseñas de la comunidad</h2>
+            <p class="text-sm text-slate-600 mt-1">Descubre las valoraciones más recientes escritas por los alumnos del centro.</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-100 text-slate-700 border border-slate-200 text-xs font-semibold">
+              <span class="material-symbols-outlined text-[18px] text-[#0051d5]">verified</span>Moderación escolar activa
+            </span>
+            <a href="resenas.html" class="inline-flex items-center gap-1 text-sm font-semibold text-[#00355f] hover:underline">
+              <span>Ver todas</span>
+              <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Cuadrícula dinámica de reseñas recientes -->
+        <div id="home-reviews-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Renderizado dinámico desde data.js -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN 4: MEJOR VALORADAS POR LOS ALUMNOS -->
+    <section class="w-full bg-slate-50 py-12 border-t border-slate-200">
+      <div class="max-w-[1280px] mx-auto px-4 md:px-6">
+        
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-2">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-slate-200 flex items-center justify-center text-[#00355f]">
+              <span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+            </div>
+            <div>
+              <h3 class="font-headline text-xl sm:text-2xl font-bold text-slate-900">Mejor valoradas por los alumnos</h3>
+              <p class="text-sm text-slate-600">Las lecturas recomendadas con alta puntuación en Ave María Albolote</p>
+            </div>
+          </div>
+          <div class="hidden md:flex items-center gap-1.5 text-xs text-slate-600">
+            <span class="material-symbols-outlined text-[18px] text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
+            <span class="font-medium">Criterio de máxima puntuación verificada</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Destacada 1 -->
+          <a href="detalle.html?id=rev-venganza" class="bg-white p-5 rounded-2xl border border-slate-200 flex flex-col justify-between group hover:shadow-md transition-all">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="inline-flex items-center gap-1 text-slate-700 font-bold text-xs bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">
+                  <span class="material-symbols-outlined text-[15px] text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>5.0 estrellas
+                </span>
+                <span class="text-xs text-slate-500">L. · 3º ESO</span>
+              </div>
+              <div class="flex gap-4 items-start">
+                <div class="w-12 h-16 rounded-lg bg-[#00355f] text-white shrink-0 flex items-center justify-center font-bold text-lg shadow-sm">V</div>
+                <div>
+                  <h4 class="font-headline text-base font-bold text-slate-900 line-clamp-1 group-hover:text-[#00355f] transition-colors">Venganza para víctimas</h4>
+                  <p class="text-xs text-slate-500">Holly Jackson</p>
+                  <div class="flex items-center gap-1 mt-2">
+                    <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-xs border border-slate-200">Misterio</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs text-slate-500 font-medium">Recomendación destacada</span>
+              <span class="material-symbols-outlined text-slate-400 group-hover:text-[#00355f] group-hover:translate-x-1 transition-all text-[20px]">chevron_right</span>
+            </div>
+          </a>
+
+          <!-- Destacada 2 -->
+          <a href="detalle.html?id=rev-invisible" class="bg-white p-5 rounded-2xl border border-slate-200 flex flex-col justify-between group hover:shadow-md transition-all">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="inline-flex items-center gap-1 text-slate-700 font-bold text-xs bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">
+                  <span class="material-symbols-outlined text-[15px] text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>5.0 estrellas
+                </span>
+                <span class="text-xs text-slate-500">L. · 2º ESO</span>
+              </div>
+              <div class="flex gap-4 items-start">
+                <div class="w-12 h-16 rounded-lg bg-[#00355f] text-white shrink-0 flex items-center justify-center font-bold text-lg shadow-sm">I</div>
+                <div>
+                  <h4 class="font-headline text-base font-bold text-slate-900 line-clamp-1 group-hover:text-[#00355f] transition-colors">Invisible</h4>
+                  <p class="text-xs text-slate-500">Eloy Moreno</p>
+                  <div class="flex items-center gap-1 mt-2">
+                    <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-xs border border-slate-200">Convivencia escolar</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs text-slate-500 font-medium">Lectura del mes</span>
+              <span class="material-symbols-outlined text-slate-400 group-hover:text-[#00355f] group-hover:translate-x-1 transition-all text-[20px]">chevron_right</span>
+            </div>
+          </a>
+
+          <!-- Destacada 3 -->
+          <a href="detalle.html?id=rev-pijama-rayas" class="bg-white p-5 rounded-2xl border border-slate-200 flex flex-col justify-between group hover:shadow-md transition-all">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="inline-flex items-center gap-1 text-slate-700 font-bold text-xs bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">
+                  <span class="material-symbols-outlined text-[15px] text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>5.0 estrellas
+                </span>
+                <span class="text-xs text-slate-500">P. · 2º ESO</span>
+              </div>
+              <div class="flex gap-4 items-start">
+                <div class="w-12 h-16 rounded-lg bg-[#00355f] text-white shrink-0 flex items-center justify-center font-bold text-lg shadow-sm">E</div>
+                <div>
+                  <h4 class="font-headline text-base font-bold text-slate-900 line-clamp-1 group-hover:text-[#00355f] transition-colors">El niño con el pijama...</h4>
+                  <p class="text-xs text-slate-500">John Boyne</p>
+                  <div class="flex items-center gap-1 mt-2">
+                    <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 text-xs border border-slate-200">Histórica</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs text-slate-500 font-medium">Aclamado escolar</span>
+              <span class="material-symbols-outlined text-slate-400 group-hover:text-[#00355f] group-hover:translate-x-1 transition-all text-[20px]">chevron_right</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 5: LLAMADA A LA ACCIÓN (ESCRIBIR RESEÑA) -->
+    <section class="w-full py-12 bg-white">
+      <div class="max-w-[1280px] mx-auto px-4 md:px-6">
+        <div class="bg-gradient-to-r from-[#00355f] to-[#0f4c81] rounded-3xl p-8 md:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden">
+          <div class="absolute -right-10 -bottom-10 w-64 h-64 rounded-full bg-white/5 pointer-events-none"></div>
+          <div class="max-w-xl">
+            <span class="px-3 py-1 rounded-full bg-white/10 text-white text-xs font-semibold uppercase tracking-wider mb-3 inline-block">Tu opinión importa</span>
+            <h3 class="font-headline text-2xl sm:text-3xl font-bold leading-tight">¿Has terminado un libro recientemente?</h3>
+            <p class="text-slate-200 mt-2 text-sm sm:text-base leading-relaxed">
+              Comparte tu visión, puntúa la obra y ayuda a otros compañeros a encontrar su próxima aventura literaria.
+            </p>
+          </div>
+          <div class="shrink-0">
+            <a href="escribir.html" class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-[#00355f] font-headline font-bold text-base hover:bg-slate-100 shadow-lg active:scale-95 transition-all">
+              <span class="material-symbols-outlined text-[22px]">edit_note</span>
+              <span>Escribir mi reseña ahora</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="w-full bg-slate-100 border-t border-slate-200 mt-auto">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+        <img alt="Colegio Ave María Albolote" class="h-8 w-auto object-contain" 
+             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE3XwAuIShH-rGhXMgUOJDYsf_Sy9pz86dSXSEqVi_E1JAh3TiS67TlWVppXvkBv_Qf-5osHUjrvR1lS62T8FX6-sxDu06V-9EmtGyZ58PoYwNlP9sFXI90LlqKax7-zOqxJKEg4WmUw4UtE-f4iF8azeY4p2ViOu1efl0W-f8w6U_DiEhV1it5XopYzOW5i1sdMRdHi83WhersNEEP0cKGMCTq8_yOkkyv29_dEraujTt8T1zKRCM0Q"/>
+        <span class="text-sm text-slate-800 font-semibold">© 2026 InteractivaMente: tu guía de lectura · Ave María Albolote</span>
+      </div>
+      <div class="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-600">
+        <a class="hover:text-[#00355f] transition-colors" href="resenas.html">Guía de lectura</a>
+        <a class="hover:text-[#00355f] transition-colors" href="#">Privacidad escolar (menores protegidos)</a>
+        <a class="hover:text-[#00355f] transition-colors" href="#">Protocolo de convivencia</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="data.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    // Búsqueda del formulario Hero
+    function handleHeroSearch(e) {
+      e.preventDefault();
+      const query = document.getElementById('hero-search-input').value.trim();
+      if (query) {
+        window.location.href = `resenas.html?q=${encodeURIComponent(query)}`;
+      } else {
+        window.location.href = 'resenas.html';
+      }
+    }
+
+    // Renderizado reactivo de la pantalla de inicio
+    document.addEventListener('DOMContentLoaded', () => {
+      if (!window.appStore) return;
+
+      // Actualizar estadísticas dinámicas
+      const stats = window.appStore.getGlobalStats();
+      const statTotalReviews = document.getElementById('stat-total-reviews');
+      const statTotalBooks = document.getElementById('stat-total-books');
+      const statTotalReaders = document.getElementById('stat-total-readers');
+
+      if (statTotalReviews) statTotalReviews.innerText = stats.totalReviews;
+      if (statTotalBooks) statTotalBooks.innerText = stats.totalBooks;
+      if (statTotalReaders) statTotalReaders.innerText = stats.totalReaders;
+
+      // Renderizar últimas 4 reseñas
+      const reviews = window.appStore.getReviews().slice(0, 4);
+      const grid = document.getElementById('home-reviews-grid');
+      if (!grid) return;
+
+      grid.innerHTML = reviews.map(rev => {
+        const book = window.appStore.getBookById(rev.bookId) || {
+          coverUrl: '',
+          genreLabel: rev.genre || 'Lectura escolar'
+        };
+
+        const starsHtml = Array.from({ length: 5 }, (_, i) => `
+          <span class="material-symbols-outlined text-[18px] ${i < rev.rating ? 'text-amber-500' : 'text-slate-300'}" 
+                style="font-variation-settings: 'FILL' ${i < rev.rating ? 1 : 0};">star</span>
+        `).join('');
+
+        return `
+          <article class="bg-white rounded-2xl p-5 sm:p-6 border border-slate-200 flex flex-col justify-between shadow-xs hover:shadow-md transition-all group">
+            <div class="flex flex-col sm:flex-row gap-5">
+              
+              <!-- Portada -->
+              <div class="sm:w-36 shrink-0 flex flex-col items-center">
+                <a href="detalle.html?id=${rev.id}" class="w-28 sm:w-32 aspect-[2/3] rounded-xl bg-[#00355f] text-white p-3 flex flex-col justify-between shadow-sm relative overflow-hidden group-hover:scale-102 transition-transform">
+                  ${book.coverUrl ? `
+                    <img src="${book.coverUrl}" alt="Portada de ${rev.bookTitle}" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none"></div>
+                  ` : ''}
+                  <div class="relative z-10 flex justify-between items-start">
+                    <span class="text-xs font-bold text-white/90 drop-shadow">${rev.genre || 'Lectura'}</span>
+                    <span class="material-symbols-outlined text-[18px] text-white/90 drop-shadow">bookmark</span>
+                  </div>
+                  <div class="relative z-10">
+                    <span class="font-headline text-xs font-bold leading-tight line-clamp-2 drop-shadow">${rev.bookTitle}</span>
+                    <span class="text-[11px] text-white/80 block mt-0.5 truncate drop-shadow">${rev.author}</span>
+                  </div>
+                </a>
+                <div class="mt-2 text-center">
+                  <span class="inline-flex items-center gap-1 text-xs font-bold text-slate-700 bg-slate-100 px-2.5 py-0.5 rounded-full border border-slate-200">
+                    <span class="material-symbols-outlined text-[16px] text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
+                    ${rev.ratingDecimal || (rev.rating + '.0')} / 5
+                  </span>
+                </div>
+              </div>
+
+              <!-- Contenido y texto de reseña -->
+              <div class="flex-1 flex flex-col justify-between">
+                <div>
+                  <div class="flex flex-wrap items-center justify-between gap-1 mb-2">
+                    <div class="flex items-center gap-2">
+                      <div class="w-7 h-7 rounded-full bg-[#00355f] flex items-center justify-center text-white font-bold text-xs shadow-xs">
+                        ${rev.studentInitial || rev.studentName.charAt(0)}
+                      </div>
+                      <div>
+                        <span class="text-sm text-slate-900 font-bold">${rev.studentName}</span>
+                        <span class="text-slate-300 mx-1">·</span>
+                        <span class="text-xs text-[#0051d5] font-semibold">${rev.studentGrade}</span>
+                      </div>
+                    </div>
+                    <span class="text-slate-500 text-xs">${rev.dateText}</span>
+                  </div>
+
+                  <div class="flex items-center gap-0.5 mb-2">
+                    ${starsHtml}
+                  </div>
+
+                  <h4 class="font-headline text-lg font-bold text-slate-900 mb-0.5 group-hover:text-[#00355f] transition-colors">
+                    <a href="detalle.html?id=${rev.id}">${rev.bookTitle}</a>
+                  </h4>
+                  <p class="text-xs text-slate-500 mb-2">de <span class="font-semibold text-slate-800">${rev.author}</span></p>
+
+                  <p class="text-sm text-slate-600 line-clamp-3 leading-relaxed mb-4 italic">
+                    "${rev.reviewText}"
+                  </p>
+                </div>
+
+                <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100">
+                  <div class="flex items-center gap-1.5 flex-wrap">
+                    ${(rev.tags || []).slice(0, 2).map(tag => `
+                      <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-700 text-xs font-medium border border-slate-200">${tag}</span>
+                    `).join('')}
+                  </div>
+                  <a href="detalle.html?id=${rev.id}" class="inline-flex items-center gap-1 text-[#00355f] hover:text-[#0051d5] text-sm font-bold transition-colors">
+                    <span>Leer completa</span>
+                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                  </a>
+                </div>
+
+              </div>
+
+            </div>
+          </article>
+        `;
+      }).join('');
+    });
+  </script>
+</body>
+</html>
