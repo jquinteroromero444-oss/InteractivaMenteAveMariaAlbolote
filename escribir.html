@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <meta content="web_standard" name="shell-type"/>
+  <title>Escribir Reseña · InteractivaMente · Ave María Albolote</title>
+
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+  <style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+      }
+      body {
+        overscroll-behavior: none;
+      }
+      main > :first-child {
+        margin-top: 0 !important;
+      }
+      main > :last-child {
+        margin-bottom: 0 !important;
+      }
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00355f;
+    }
+    html.font-large {
+      font-size: 115%;
+    }
+    html.high-contrast {
+      filter: contrast(130%);
+    }
+    html.high-contrast body {
+      background-color: #ffffff !important;
+      color: #000000 !important;
+    }
+  </style>
+
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#00355f",
+            "primary-container": "#0f243e",
+            secondary: "#0051d5",
+            surface: "#f8fafc",
+            "on-surface": "#0f172a"
+          },
+          fontFamily: {
+            headline: ["Outfit", "sans-serif"],
+            body: ["Inter", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-[#f8fafc] font-body text-slate-800 antialiased selection:bg-[#00355f] selection:text-white flex flex-col min-h-screen">
+
+  <!-- ENCABEZADO FIJO -->
+  <header class="fixed top-0 left-0 right-0 w-full z-50 bg-white/95 backdrop-blur-md shadow-[0_1px_8px_rgba(15,23,42,0.06)] border-b border-slate-200">
+    <div class="h-20 max-w-[1280px] mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
+      
+      <div class="flex items-center gap-6">
+        <a class="flex items-center gap-3 group" href="index.html">
+          <img alt="Colegio Ave María Albolote" class="h-10 w-auto object-contain shrink-0" 
+               src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE3XwAuIShH-rGhXMgUOJDYsf_Sy9pz86dSXSEqVi_E1JAh3TiS67TlWVppXvkBv_Qf-5osHUjrvR1lS62T8FX6-sxDu06V-9EmtGyZ58PoYwNlP9sFXI90LlqKax7-zOqxJKEg4WmUw4UtE-f4iF8azeY4p2ViOu1efl0W-f8w6U_DiEhV1it5XopYzOW5i1sdMRdHi83WhersNEEP0cKGMCTq8_yOkkyv29_dEraujTt8T1zKRCM0Q"/>
+          <div class="flex items-baseline gap-1 font-headline">
+            <span class="text-xl font-bold text-[#00355f]">InteractivaMente</span>
+            <span class="hidden sm:inline text-sm text-slate-500 font-normal">: tu guía de lectura</span>
+          </div>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-2">
+          <a class="text-slate-600 hover:text-[#00355f] font-medium text-sm px-4 py-2 rounded-full transition-colors hover:bg-slate-100" href="index.html">Inicio</a>
+          <a class="text-slate-600 hover:text-[#00355f] font-medium text-sm px-4 py-2 rounded-full transition-colors hover:bg-slate-100" href="resenas.html">Reseñas</a>
+          <a aria-current="page" class="bg-[#00355f] text-white font-medium text-sm rounded-full px-4 py-2 shadow-sm transition-all" href="escribir.html">Escribir reseña</a>
+          <a class="text-slate-600 hover:text-[#00355f] font-medium text-sm px-4 py-2 rounded-full transition-colors hover:bg-slate-100" href="perfil.html">Mi perfil</a>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- Accesibilidad -->
+        <div class="flex items-center gap-1.5 border-l border-slate-200 pl-3">
+          <button onclick="toggleFuenteGrande()" title="Agrandar letra" class="h-9 px-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all flex items-center border border-slate-200">
+            A+
+          </button>
+          <button onclick="toggleAltoContraste()" title="Alto contraste" class="h-9 px-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition-all flex items-center border border-slate-200">
+            <span class="material-symbols-outlined text-[18px]">contrast</span>
+          </button>
+        </div>
+
+        <a href="perfil.html" class="flex items-center gap-2 pl-2">
+          <div class="flex flex-col items-end hidden sm:flex">
+            <span class="text-sm font-semibold text-slate-900 leading-tight">L. · 3º ESO</span>
+            <span class="text-xs text-slate-500 font-medium">Alumna</span>
+          </div>
+          <div class="w-10 h-10 rounded-full bg-[#00355f] flex items-center justify-center text-white font-headline font-bold text-sm shadow-md ring-2 ring-slate-200">
+            L
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="w-full pt-20 flex-grow">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-6 py-8 w-full">
+      
+      <!-- CABECERA DE LA PÁGINA -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+        <div class="max-w-3xl">
+          <div class="flex items-center gap-2 mb-2">
+            <span class="px-3 py-1 rounded-full bg-slate-100 text-[#00355f] text-xs font-semibold flex items-center gap-1.5 border border-slate-200">
+              <span class="material-symbols-outlined text-[15px]">edit_note</span> Taller de crítica literaria escolar
+            </span>
+            <span class="text-slate-400 text-xs font-medium">• Ave María Albolote</span>
+          </div>
+          <h1 class="font-headline text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 tracking-tight">
+            <span class="text-[#00355f]">InteractivaMente: tu guía de lectura</span> - Escribir reseña
+          </h1>
+          <p class="text-sm sm:text-base text-slate-600 mt-2 leading-relaxed">
+            Comparte tus impresiones con la comunidad lectora de Ave María Albolote. Tu opinión inspira y guía las próximas lecturas de tus compañeros.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3 px-4 py-3 bg-white border border-slate-200 rounded-2xl shadow-xs shrink-0">
+          <div class="relative">
+            <div class="w-10 h-10 rounded-full bg-[#00355f] flex items-center justify-center text-white font-headline font-bold text-sm shadow-xs">L</div>
+            <span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-[#0051d5] flex items-center justify-center text-white text-[9px]">
+              <span class="material-symbols-outlined text-[10px]">shield</span>
+            </span>
+          </div>
+          <div class="flex flex-col">
+            <div class="flex items-center gap-1.5">
+              <span class="text-sm font-semibold text-slate-900">L. · 3º ESO</span>
+              <span class="px-1.5 py-0.2 rounded bg-slate-100 text-[#00355f] text-[10px] font-semibold">Alumna</span>
+            </div>
+            <span class="text-xs text-slate-500 flex items-center gap-1 font-medium">
+              <span class="material-symbols-outlined text-[13px] text-emerald-600">lock</span> Privacidad escolar protegida
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- WORKSPACE RESPONSIVO: 2 COLUMNAS (FORMULARIO PASO A PASO + VISTA PREVIA) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- ================= COLUMNA IZQUIERDA: FORMULARIO PASO A PASO ================= -->
+        <div class="lg:col-span-7 flex flex-col gap-6">
+          
+          <!-- PASO 1: BUSCADOR INTELIGENTE DE LIBROS -->
+          <section class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col gap-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-[#00355f] text-white text-xs font-bold flex items-center justify-center shadow-xs">
+                  1
+                </span>
+                <h2 class="font-headline text-lg font-bold text-slate-900">Buscador inteligente de libros</h2>
+              </div>
+              <span class="text-xs text-[#00355f] bg-slate-100 px-3 py-1 rounded-full flex items-center gap-1 font-semibold border border-slate-200">
+                <span class="material-symbols-outlined text-[15px]">sync_alt</span> Catálogo escolar activo
+              </span>
+            </div>
+
+            <p class="text-xs sm:text-sm text-slate-600 -mt-1">
+              Localiza la obra en el catálogo escolar y traeremos de inmediato su portada oficial, autor y editorial verificada.
+            </p>
+
+            <!-- Campo de búsqueda -->
+            <div class="relative w-full">
+              <label class="block text-xs font-bold text-slate-700 mb-1.5" for="book-search-input">
+                Buscar libro por título o autor
+              </label>
+              <div class="relative flex items-center">
+                <span class="material-symbols-outlined absolute left-4 text-slate-400 text-[20px] pointer-events-none">search</span>
+                <input id="book-search-input" oninput="handleCatalogSearch(this.value)"
+                       class="w-full bg-slate-50 text-slate-900 text-sm pl-11 pr-10 py-3 rounded-xl border border-slate-200 focus:outline-none focus:bg-white focus:border-[#00355f] transition-all" 
+                       placeholder="Busca por título, saga o autor (ej: Asesinato para principiantes, Invisible, Powerless...)" 
+                       type="text" value="Asesinato para principiantes"/>
+                <button onclick="clearBookSearch()" aria-label="Limpiar búsqueda" class="absolute right-3 text-slate-400 hover:text-slate-600 p-1" type="button">
+                  <span class="material-symbols-outlined text-[18px]">cancel</span>
+                </button>
+              </div>
+
+              <!-- Desplegable interactivo de sugerencias -->
+              <div id="autocomplete-dropdown" class="mt-2 w-full bg-white border border-slate-200 rounded-xl shadow-lg overflow-hidden z-20">
+                <div class="px-4 py-2 bg-slate-50 flex items-center justify-between border-b border-slate-200">
+                  <span class="text-xs text-slate-500 font-semibold">Sugerencias encontradas</span>
+                  <span class="text-xs text-[#0051d5] flex items-center gap-1 font-medium">
+                    <span class="material-symbols-outlined text-[14px]">cloud_done</span> Datos bibliográficos verificados
+                  </span>
+                </div>
+                <div id="dropdown-results-container" class="divide-y divide-slate-100 max-h-60 overflow-y-auto">
+                  <!-- Sugerencias inyectadas por JS -->
+                </div>
+              </div>
+            </div>
+
+            <!-- Acordeón para carga manual de libros si no está en catálogo -->
+            <div class="pt-2 border-t border-slate-100">
+              <button id="toggle-manual-entry" type="button" 
+                      class="flex items-center gap-2 text-xs font-semibold text-[#0051d5] hover:text-[#00355f] transition-colors group text-left">
+                <span class="material-symbols-outlined text-[18px] transition-transform group-hover:translate-x-0.5">help_outline</span>
+                <span>¿No encuentras tu libro en el catálogo? <u>Introduce los datos manualmente</u></span>
+              </button>
+
+              <div id="manual-entry-panel" class="hidden mt-4 p-4 bg-slate-50 border border-slate-200 rounded-xl flex flex-col gap-3">
+                <span class="text-xs font-bold text-slate-800">Carga manual de ficha</span>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  <div>
+                    <label class="text-xs text-slate-600 mb-1 block">Título de la obra *</label>
+                    <input id="manual-title" oninput="updateFromManualInput()" 
+                           class="w-full bg-white text-slate-900 text-xs px-3 py-2 rounded-lg border border-slate-200 focus:outline-none focus:border-[#00355f]" 
+                           placeholder="Ej: La sombra del viento" type="text"/>
+                  </div>
+                  <div>
+                    <label class="text-xs text-slate-600 mb-1 block">Autor o autora *</label>
+                    <input id="manual-author" oninput="updateFromManualInput()" 
+                           class="w-full bg-white text-slate-900 text-xs px-3 py-2 rounded-lg border border-slate-200 focus:outline-none focus:border-[#00355f]" 
+                           placeholder="Ej: Carlos Ruiz Zafón" type="text"/>
+                  </div>
+                </div>
+                <div>
+                  <label class="text-xs text-slate-600 mb-1 block">Editorial</label>
+                  <input id="manual-publisher" oninput="updateFromManualInput()" 
+                         class="w-full bg-white text-slate-900 text-xs px-3 py-2 rounded-lg border border-slate-200 focus:outline-none focus:border-[#00355f]" 
+                         placeholder="Ej: Planeta / Destino" type="text"/>
+                </div>
+              </div>
+            </div>
+
+          </section>
+
+          <!-- PASO 2: DATOS DE LA OBRA SELECCIONADA -->
+          <section class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col gap-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-[#00355f] text-white text-xs font-bold flex items-center justify-center shadow-xs">
+                  2
+                </span>
+                <h2 class="font-headline text-lg font-bold text-slate-900">Datos de la obra seleccionada</h2>
+              </div>
+              <span class="flex items-center gap-1.5 text-xs text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full font-semibold border border-emerald-200">
+                <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                Autocompletado activo
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+              <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl">
+                <span class="text-xs text-slate-500 block font-semibold">Título de la obra</span>
+                <span id="meta-title" class="text-sm font-headline font-bold text-slate-900 block mt-0.5 truncate">
+                  Asesinato para principiantes
+                </span>
+              </div>
+              <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl">
+                <span class="text-xs text-slate-500 block font-semibold">Autoría</span>
+                <span id="meta-author" class="text-sm font-headline font-bold text-slate-900 block mt-0.5 truncate">
+                  Holly Jackson
+                </span>
+              </div>
+              <div class="bg-slate-50 border border-slate-200 p-3 rounded-xl">
+                <span class="text-xs text-slate-500 block font-semibold">Sello editorial</span>
+                <span id="meta-publisher" class="text-sm font-headline font-bold text-slate-900 block mt-0.5 truncate">
+                  Crossbooks / Destino
+                </span>
+              </div>
+            </div>
+
+            <!-- Conmutador de secuela o saga -->
+            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl flex flex-col gap-3">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                  <span class="material-symbols-outlined text-[#0051d5] text-[20px]">auto_stories</span>
+                  <div>
+                    <span class="text-xs font-bold text-slate-900 block">¿Es la continuación de otro libro o saga?</span>
+                    <span class="text-xs text-slate-500">Facilita el orden de lectura a otros alumnos</span>
+                  </div>
+                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                  <input id="toggle-sequel" type="checkbox" checked class="sr-only peer" onchange="toggleSequelField(this.checked)">
+                  <div class="w-11 h-6 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#00355f]"></div>
+                </label>
+              </div>
+
+              <div id="sequel-input-container" class="pt-2 flex flex-col gap-1">
+                <label class="text-xs text-slate-600 font-medium">Saga o volumen precedente</label>
+                <div class="relative">
+                  <input id="sequel-input" oninput="updateLivePreview()" 
+                         class="w-full bg-white text-slate-900 text-xs px-3 py-2 rounded-lg border border-slate-200 focus:outline-none focus:border-[#00355f]" 
+                         type="text" value="Primer libro de la trilogía Pip Fitz-Amobi (Comienzo de saga)"/>
+                  <span class="material-symbols-outlined absolute right-2.5 top-2 text-[#0051d5] text-[18px]">bookmark</span>
+                </div>
+              </div>
+            </div>
+
+          </section>
+
+          <!-- PASO 3: CALIFICACIÓN GENERAL DE LA LECTURA -->
+          <section class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col gap-4">
+            <div class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-full bg-[#00355f] text-white text-xs font-bold flex items-center justify-center shadow-xs">
+                3
+              </span>
+              <div>
+                <h2 class="font-headline text-lg font-bold text-slate-900">Calificación general de la lectura</h2>
+                <span class="text-xs text-slate-500">Valora de forma justa teniendo en cuenta ritmo, personajes y desenlace</span>
+              </div>
+            </div>
+
+            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl flex flex-col sm:flex-row items-center justify-between gap-4">
+              <!-- Botones de estrellas interactivas -->
+              <div id="star-rating-group" class="flex items-center gap-1.5">
+                <button type="button" data-val="1" onclick="setRating(1)" class="star-btn p-1 text-amber-500 hover:scale-110 transition-transform">
+                  <span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                </button>
+                <button type="button" data-val="2" onclick="setRating(2)" class="star-btn p-1 text-amber-500 hover:scale-110 transition-transform">
+                  <span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                </button>
+                <button type="button" data-val="3" onclick="setRating(3)" class="star-btn p-1 text-amber-500 hover:scale-110 transition-transform">
+                  <span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                </button>
+                <button type="button" data-val="4" onclick="setRating(4)" class="star-btn p-1 text-amber-500 hover:scale-110 transition-transform">
+                  <span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                </button>
+                <button type="button" data-val="5" onclick="setRating(5)" class="star-btn p-1 text-amber-500 hover:scale-110 transition-transform">
+                  <span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                </button>
+              </div>
+
+              <div class="text-center sm:text-right">
+                <span id="rating-desc-badge" class="font-headline text-base font-bold text-slate-900 block">5.0 - Excelente</span>
+                <span class="text-xs text-slate-500">Imprescindible en el aula</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- PASO 4: RESUMEN SIN DEST RIPES -->
+          <section class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col gap-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-[#00355f] text-white text-xs font-bold flex items-center justify-center shadow-xs">
+                  4
+                </span>
+                <div>
+                  <h2 class="font-headline text-lg font-bold text-slate-900">Resumen aportado por el estudiante</h2>
+                  <span class="text-xs text-slate-500">Explica la premisa de forma atractiva sin revelar secretos cruciales</span>
+                </div>
+              </div>
+              <span class="text-xs px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 font-semibold border border-slate-200">
+                Sin spoilers
+              </span>
+            </div>
+
+            <div class="relative">
+              <textarea id="input-synopsis" oninput="updateLivePreview()" rows="3"
+                        class="w-full bg-slate-50 text-slate-900 text-sm p-3.5 rounded-xl border border-slate-200 focus:outline-none focus:bg-white focus:border-[#00355f] transition-all resize-none"
+                        placeholder="Resume el punto de partida de la trama en 2-4 líneas sin contar el desenlace...">Andie Bell fue asesinada por su novio, Sal Singh. O eso dice todo el mundo. Cinco años después, Pippa Fitz-Amobi elige el caso como proyecto final de curso escolar para demostrar que el verdadero asesino sigue en libertad.</textarea>
+            </div>
+          </section>
+
+          <!-- PASO 5: OPINIÓN PERSONAL Y CRÍTICA SINCERA -->
+          <section class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col gap-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-[#00355f] text-white text-xs font-bold flex items-center justify-center shadow-xs">
+                  5
+                </span>
+                <div>
+                  <h2 class="font-headline text-lg font-bold text-slate-900">Opinión personal y valoración sincera</h2>
+                  <span class="text-xs text-slate-500">¿Qué te transmitió el libro? ¿A quién se lo recomendarías?</span>
+                </div>
+              </div>
+              <span class="text-xs text-slate-500">Mínimo 50 caracteres</span>
+            </div>
+
+            <div class="relative">
+              <textarea id="input-review" oninput="updateLivePreview()" rows="5" required
+                        class="w-full bg-slate-50 text-slate-900 text-sm p-3.5 rounded-xl border border-slate-200 focus:outline-none focus:bg-white focus:border-[#00355f] transition-all resize-none"
+                        placeholder="Escribe aquí tu análisis sincero. Explica qué te pareció el ritmo, los personajes, la ambientación y si merece la pena...">Es uno de los thrillers juveniles mejor hilados que he leído en mucho tiempo. Lo que más me enganchó fue el formato interactivo: incluye transcripciones de entrevistas telefónicas, esquemas de sospechosos y notas del diario de Pip. Te mantiene sospechando de todo el pueblo hasta la última página.</textarea>
+            </div>
+
+            <!-- Titular de veredicto corto -->
+            <div>
+              <label class="text-xs font-bold text-slate-700 mb-1 block">Titular o frase resumen de tu crítica</label>
+              <input id="input-highlight" oninput="updateLivePreview()" 
+                     class="w-full bg-slate-50 text-slate-900 text-xs px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:bg-white focus:border-[#00355f]" 
+                     placeholder="Ej: Insuperable ritmo narrativo" value="Lectura ágil e inteligente"/>
+            </div>
+
+            <!-- Etiquetas de género literario -->
+            <div class="pt-2">
+              <label class="text-xs font-bold text-slate-700 mb-2 block">Etiquetas temáticas asociadas:</label>
+              <div id="form-tags-container" class="flex flex-wrap gap-2">
+                <button type="button" onclick="toggleTag(this)" class="tag-btn px-3 py-1 rounded-full text-xs font-semibold bg-[#00355f] text-white">#Misterio</button>
+                <button type="button" onclick="toggleTag(this)" class="tag-btn px-3 py-1 rounded-full text-xs font-semibold bg-[#00355f] text-white">#Juvenil</button>
+                <button type="button" onclick="toggleTag(this)" class="tag-btn px-3 py-1 rounded-full text-xs font-semibold bg-[#00355f] text-white">#Investigación</button>
+                <button type="button" onclick="toggleTag(this)" class="tag-btn px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700">#Aventuras</button>
+                <button type="button" onclick="toggleTag(this)" class="tag-btn px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-700">#Convivencia</button>
+              </div>
+            </div>
+
+          </section>
+
+        </div>
+
+        <!-- ================= COLUMNA DERECHA: VISTA PREVIA EN TIEMPO REAL & PUBLICACIÓN ================= -->
+        <div class="lg:col-span-5 flex flex-col gap-6 lg:sticky lg:top-24">
+          
+          <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-md flex flex-col gap-5">
+            
+            <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-[#0051d5] animate-pulse"></span>
+                <span class="text-sm font-bold text-slate-900">Vista previa en tiempo real</span>
+              </div>
+              <span class="px-2.5 py-0.5 rounded-full bg-slate-100 text-slate-600 text-xs font-semibold border border-slate-200">
+                Expositorio escolar
+              </span>
+            </div>
+
+            <!-- Tarjeta de previsualización idéntica a como saldrá en la vitrina -->
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-5 shadow-xs flex flex-col gap-4 relative overflow-hidden">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-1 rounded-full bg-white text-[#00355f] text-xs font-semibold flex items-center gap-1 border border-slate-200 shadow-2xs">
+                  <span class="material-symbols-outlined text-[14px]">verified</span> Pendiente de validación docente
+                </span>
+                <span class="text-xs text-slate-400">Hoy, en unos instantes</span>
+              </div>
+
+              <div class="flex gap-4 items-start">
+                <!-- Portada en vista previa -->
+                <div class="w-24 sm:w-28 aspect-[2/3] rounded-xl bg-[#00355f] shadow-sm shrink-0 relative overflow-hidden group">
+                  <img id="preview-cover-img" alt="Portada" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBO8QUkek0inUNJ9UOvftBUPmycFVb0bK-VskXGGjH-9diV6oKUFScA64AaJzKnKxGGIS8Tctuii5lD26cuTDkV2K6UaiTNZyFfnQk0NpPls2c44roIuZgFaYMbtnnb940alcnMWCakgiLkgTLhFrdsAF3Ai88R_A97LT0BShUdjYtVJiE0d-307y0DXzGquk8PE5J5jUQNvau0J9YZwspxBb94-ViSmLvXIMTXiB0pD6rHHG8Z1NkrBw"/>
+                  <div class="absolute inset-y-0 left-0 w-2 bg-gradient-to-r from-black/40 to-transparent pointer-events-none"></div>
+                  <div class="absolute bottom-1 right-1 bg-[#00355f]/90 text-white text-[10px] px-1.5 py-0.5 rounded backdrop-blur-xs font-semibold">
+                    14+ ESO
+                  </div>
+                </div>
+
+                <!-- Datos de la obra en vista previa -->
+                <div class="flex flex-col flex-1 min-w-0">
+                  <div class="flex items-center gap-1 text-amber-500 mb-1">
+                    <span id="preview-stars" class="flex items-center">
+                      <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                      <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                      <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                      <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                      <span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                    </span>
+                    <span id="preview-stars-label" class="text-xs text-slate-800 font-bold ml-1">5.0</span>
+                  </div>
+
+                  <h3 id="preview-title" class="font-headline text-base font-bold text-slate-900 leading-snug line-clamp-2">
+                    Asesinato para principiantes
+                  </h3>
+                  <span id="preview-author" class="text-xs text-slate-600 mt-0.5 font-medium truncate">
+                    Holly Jackson
+                  </span>
+                  <span id="preview-publisher" class="text-[11px] text-slate-400 truncate">
+                    Crossbooks / Destino
+                  </span>
+
+                  <!-- Estudiante persona -->
+                  <div class="flex items-center gap-2 mt-3 pt-2 border-t border-slate-200">
+                    <div class="w-6 h-6 rounded-full bg-[#00355f] text-white flex items-center justify-center text-[10px] font-bold">L</div>
+                    <div class="flex flex-col">
+                      <span class="text-xs text-slate-900 font-semibold leading-none">L. · 3º ESO</span>
+                      <span class="text-[10px] text-slate-500 leading-tight">Alumna de Secundaria</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Fragmento en vista previa -->
+              <div class="bg-white border border-slate-200 p-3 rounded-xl shadow-2xs">
+                <p id="preview-text" class="text-xs text-slate-700 line-clamp-3 italic leading-relaxed">
+                  "Es uno de los thrillers juveniles mejor hilados que he leído en mucho tiempo..."
+                </p>
+              </div>
+
+              <!-- Píldoras de la vista previa -->
+              <div id="preview-tags-badge" class="flex flex-wrap items-center gap-1.5 pt-0.5">
+                <span class="px-2.5 py-0.5 rounded-md bg-slate-200 text-[#00355f] text-xs font-semibold">#Misterio</span>
+                <span class="px-2.5 py-0.5 rounded-md bg-slate-200 text-[#00355f] text-xs font-semibold">#Juvenil</span>
+              </div>
+            </div>
+
+            <!-- Botones de Acción -->
+            <div class="flex flex-col gap-3 pt-1">
+              
+              <!-- Publicar reseña (Principal) -->
+              <button onclick="handlePublishReview()" type="button"
+                      class="w-full py-4 px-6 rounded-full bg-[#00355f] hover:bg-[#0f243e] text-white font-headline text-base font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 active:scale-98">
+                <span class="material-symbols-outlined text-[24px]">send</span>
+                <span>Publicar reseña en el expositorio</span>
+              </button>
+
+              <div class="grid grid-cols-2 gap-3">
+                <button onclick="handleSaveDraft()" type="button"
+                        class="w-full py-2.5 px-4 rounded-full bg-white text-slate-800 text-xs font-semibold border border-slate-200 hover:bg-slate-50 transition-colors flex items-center justify-center gap-1.5 shadow-2xs">
+                  <span class="material-symbols-outlined text-[18px] text-[#0051d5]">save</span>
+                  <span>Guardar borrador</span>
+                </button>
+                <button onclick="handleResetForm()" type="button"
+                        class="w-full py-2.5 px-4 rounded-full bg-white text-slate-800 text-xs font-semibold border border-slate-200 hover:bg-slate-50 transition-colors flex items-center justify-center gap-1.5 shadow-2xs">
+                  <span class="material-symbols-outlined text-[18px] text-slate-500">restart_alt</span>
+                  <span>Limpiar formulario</span>
+                </button>
+              </div>
+
+            </div>
+
+            <!-- Protocolo de salvaguarda y privacidad escolar -->
+            <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex items-start gap-3">
+              <span class="material-symbols-outlined text-[#0051d5] text-[20px] shrink-0 mt-0.5">verified_user</span>
+              <div class="flex flex-col">
+                <span class="text-xs font-bold text-[#00355f]">Protocolo de privacidad Ave María Albolote</span>
+                <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">
+                  Tus reseñas se muestran exclusivamente con tu <strong>nombre de pila</strong>. Nunca se publican apellidos ni datos personales, garantizando un entorno protegido para menores.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Consejo pedagógico de lectura crítica -->
+          <div class="bg-slate-50 border border-slate-200 p-4 rounded-2xl flex items-start gap-3 shadow-xs">
+            <span class="material-symbols-outlined text-[#0051d5] text-[24px] shrink-0">lightbulb</span>
+            <div class="flex flex-col">
+              <span class="font-headline text-sm font-bold text-slate-900">Consejo de crítica literaria</span>
+              <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                Las mejores críticas no dicen simplemente "me gustó". Explica qué escena te dejó sin aliento, cómo evolucionan los personajes y a qué tipo de compañero le recomendarías este libro.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- MODAL DE ÉXITO DE PUBLICACIÓN -->
+  <div id="success-modal" class="fixed inset-0 z-[100] hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-md rounded-3xl shadow-2xl border border-slate-200 p-6 sm:p-8 flex flex-col items-center text-center gap-4 animate-in fade-in zoom-in-95 duration-150">
+      <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center shadow-xs">
+        <span class="material-symbols-outlined text-[36px]">check_circle</span>
+      </div>
+      
+      <div class="flex flex-col gap-1">
+        <h3 class="font-headline text-2xl font-bold text-slate-900">¡Reseña publicada con éxito!</h3>
+        <p class="text-sm text-slate-600">
+          Tu crítica ha sido incorporada al expositorio escolar de Ave María Albolote. Tus compañeros y profesores ya pueden leerla.
+        </p>
+      </div>
+
+      <div class="w-full flex flex-col gap-2.5 pt-2">
+        <a id="success-btn-detail" href="#" class="w-full py-3 px-5 rounded-full bg-[#00355f] hover:bg-[#0f243e] text-white text-sm font-bold shadow-sm transition-all flex items-center justify-center gap-2">
+          <span>Ver mi reseña completa</span>
+          <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        </a>
+        <a href="resenas.html" class="w-full py-3 px-5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 text-sm font-semibold transition-colors flex items-center justify-center">
+          <span>Ir al expositorio colectivo</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="w-full bg-slate-100 border-t border-slate-200 mt-auto">
+    <div class="max-w-[1280px] mx-auto px-4 md:px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <img alt="Colegio Ave María Albolote" class="h-7 w-auto object-contain" 
+             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE3XwAuIShH-rGhXMgUOJDYsf_Sy9pz86dSXSEqVi_E1JAh3TiS67TlWVppXvkBv_Qf-5osHUjrvR1lS62T8FX6-sxDu06V-9EmtGyZ58PoYwNlP9sFXI90LlqKax7-zOqxJKEg4WmUw4UtE-f4iF8azeY4p2ViOu1efl0W-f8w6U_DiEhV1it5XopYzOW5i1sdMRdHi83WhersNEEP0cKGMCTq8_yOkkyv29_dEraujTt8T1zKRCM0Q"/>
+        <span class="text-sm text-slate-800 font-semibold">© 2026 InteractivaMente: tu guía de lectura · Ave María Albolote</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-6 text-sm text-slate-600">
+        <a class="hover:text-[#00355f] transition-colors" href="resenas.html">Guía de lectura</a>
+        <a class="hover:text-[#00355f] transition-colors" href="#">Privacidad escolar</a>
+        <a class="hover:text-[#00355f] transition-colors" href="#">Protocolo de convivencia</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="data.js"></script>
+  <script src="shared.js"></script>
+  <script>
+    let currentRating = 5;
+    let selectedBook = null;
+
+    // Inicialización del catálogo
+    document.addEventListener('DOMContentLoaded', () => {
+      // Por defecto seleccionar Asesinato para principiantes
+      const defaultBook = window.appStore.getBookById('asesinato-para-principiantes');
+      if (defaultBook) {
+        selectBook(defaultBook);
+      }
+
+      // Conectar conmutador de carga manual
+      const toggleManualBtn = document.getElementById('toggle-manual-entry');
+      const manualPanel = document.getElementById('manual-entry-panel');
+      if (toggleManualBtn && manualPanel) {
+        toggleManualBtn.addEventListener('click', () => {
+          manualPanel.classList.toggle('hidden');
+        });
+      }
+
+      // Comprobar borrador guardado
+      const draft = window.appStore.getDraft();
+      if (draft && confirm('Tienes un borrador guardado anteriormente. ¿Deseas recuperarlo?')) {
+        restoreDraft(draft);
+      }
+    });
+
+    // Búsqueda en catálogo y autocompletado
+    function handleCatalogSearch(query) {
+      const q = query.trim().toLowerCase();
+      const dropdown = document.getElementById('autocomplete-dropdown');
+      const container = document.getElementById('dropdown-results-container');
+      const books = window.appStore.getBooks();
+
+      if (!q) {
+        dropdown.classList.add('hidden');
+        return;
+      }
+
+      const matches = books.filter(b => 
+        b.title.toLowerCase().includes(q) || 
+        b.author.toLowerCase().includes(q)
+      );
+
+      if (matches.length === 0) {
+        container.innerHTML = `
+          <div class="p-3 text-center text-xs text-slate-500">
+            No se encontró en catálogo. Puedes introducir los datos en la sección manual.
+          </div>
+        `;
+        dropdown.classList.remove('hidden');
+        return;
+      }
+
+      container.innerHTML = matches.map(b => `
+        <div onclick='selectBookFromJSON(${JSON.stringify(b).replace(/'/g, "&#39;")})'
+             class="p-3 hover:bg-slate-50 cursor-pointer flex items-center gap-3 transition-colors">
+          <div class="w-10 h-14 rounded bg-[#00355f] text-white overflow-hidden shrink-0 flex items-center justify-center font-bold text-sm">
+            ${b.coverUrl ? `<img src="${b.coverUrl}" class="w-full h-full object-cover">` : b.title.charAt(0)}
+          </div>
+          <div class="flex-1 min-w-0">
+            <h4 class="text-xs font-bold text-slate-900 truncate">${b.title}</h4>
+            <p class="text-[11px] text-slate-500 truncate">${b.author} • ${b.publisher}</p>
+            <span class="text-[10px] text-[#0051d5] font-semibold">${b.ageLabel}</span>
+          </div>
+          <span class="material-symbols-outlined text-slate-400 text-[20px]">arrow_forward</span>
+        </div>
+      `).join('');
+
+      dropdown.classList.remove('hidden');
+    }
+
+    function selectBookFromJSON(book) {
+      selectBook(book);
+      document.getElementById('autocomplete-dropdown').classList.add('hidden');
+    }
+
+    function selectBook(book) {
+      selectedBook = book;
+      document.getElementById('book-search-input').value = book.title;
+      document.getElementById('meta-title').innerText = book.title;
+      document.getElementById('meta-author').innerText = book.author;
+      document.getElementById('meta-publisher').innerText = book.publisher || 'Editorial escolar';
+
+      // Actualizar vista previa
+      updateLivePreview();
+    }
+
+    function clearBookSearch() {
+      document.getElementById('book-search-input').value = '';
+      document.getElementById('autocomplete-dropdown').classList.add('hidden');
+    }
+
+    function updateFromManualInput() {
+      const title = document.getElementById('manual-title').value.trim() || 'Obra literaria';
+      const author = document.getElementById('manual-author').value.trim() || 'Autor de la obra';
+      const publisher = document.getElementById('manual-publisher').value.trim() || 'Edición independiente';
+
+      selectedBook = {
+        id: 'manual-' + Date.now(),
+        title,
+        author,
+        publisher,
+        coverUrl: '',
+        ageLabel: 'Secundaria'
+      };
+
+      document.getElementById('meta-title').innerText = title;
+      document.getElementById('meta-author').innerText = author;
+      document.getElementById('meta-publisher').innerText = publisher;
+
+      updateLivePreview();
+    }
+
+    // Calificación por estrellas
+    function setRating(rating) {
+      currentRating = rating;
+      const buttons = document.querySelectorAll('#star-rating-group button');
+      buttons.forEach(btn => {
+        const val = parseInt(btn.getAttribute('data-val'), 10);
+        const icon = btn.querySelector('.material-symbols-outlined');
+        if (val <= rating) {
+          btn.classList.add('text-amber-500');
+          btn.classList.remove('text-slate-300');
+          icon.style.fontVariationSettings = "'FILL' 1";
+        } else {
+          btn.classList.remove('text-amber-500');
+          btn.classList.add('text-slate-300');
+          icon.style.fontVariationSettings = "'FILL' 0";
+        }
+      });
+
+      const labelMap = {
+        5: '5.0 - Excelente (Imprescindible en el aula)',
+        4: '4.0 - Muy bueno (Muy recomendable)',
+        3: '3.0 - Entretenido (Lectura amena)',
+        2: '2.0 - Regular (Esperaba más)',
+        1: '1.0 - No recomendado'
+      };
+
+      document.getElementById('rating-desc-badge').innerText = labelMap[rating] || (rating + '.0');
+      updateLivePreview();
+    }
+
+    // Conmutar secuela
+    function toggleSequelField(checked) {
+      const el = document.getElementById('sequel-input-container');
+      if (el) el.style.display = checked ? 'flex' : 'none';
+      updateLivePreview();
+    }
+
+    // Conmutar etiquetas
+    function toggleTag(btn) {
+      btn.classList.toggle('bg-[#00355f]');
+      btn.classList.toggle('text-white');
+      btn.classList.toggle('bg-slate-100');
+      btn.classList.toggle('text-slate-700');
+      updateLivePreview();
+    }
+
+    // Actualizar vista previa en tiempo real
+    function updateLivePreview() {
+      const bookTitle = selectedBook ? selectedBook.title : (document.getElementById('meta-title').innerText || 'Título');
+      const bookAuthor = selectedBook ? selectedBook.author : (document.getElementById('meta-author').innerText || 'Autor');
+      const publisher = selectedBook ? selectedBook.publisher : 'Editorial';
+      const reviewText = document.getElementById('input-review').value.trim() || 'Escribe tu opinión personal en el formulario...';
+
+      // Portada
+      const previewImg = document.getElementById('preview-cover-img');
+      if (selectedBook && selectedBook.coverUrl) {
+        previewImg.src = selectedBook.coverUrl;
+        previewImg.style.display = 'block';
+      } else {
+        previewImg.style.display = 'none';
+      }
+
+      document.getElementById('preview-title').innerText = bookTitle;
+      document.getElementById('preview-author').innerText = bookAuthor;
+      document.getElementById('preview-publisher').innerText = publisher;
+      document.getElementById('preview-text').innerText = `"${reviewText}"`;
+      document.getElementById('preview-stars-label').innerText = currentRating + '.0';
+
+      // Estrellas en vista previa
+      const starsSpan = document.getElementById('preview-stars');
+      starsSpan.innerHTML = Array.from({ length: 5 }, (_, i) => `
+        <span class="material-symbols-outlined text-[16px] ${i < currentRating ? 'text-amber-500' : 'text-slate-300'}" 
+              style="font-variation-settings: 'FILL' ${i < currentRating ? 1 : 0};">star</span>
+      `).join('');
+
+      // Tags activos
+      const activeTags = Array.from(document.querySelectorAll('#form-tags-container .tag-btn.text-white')).map(b => b.innerText);
+      const tagsContainer = document.getElementById('preview-tags-badge');
+      if (tagsContainer) {
+        tagsContainer.innerHTML = activeTags.map(t => `
+          <span class="px-2.5 py-0.5 rounded-md bg-slate-200 text-[#00355f] text-xs font-semibold">${t}</span>
+        `).join('');
+      }
+    }
+
+    // Publicar reseña
+    function handlePublishReview() {
+      const reviewText = document.getElementById('input-review').value.trim();
+      const synopsis = document.getElementById('input-synopsis').value.trim();
+      const highlight = document.getElementById('input-highlight').value.trim() || 'Lectura recomendada';
+      const isSequel = document.getElementById('toggle-sequel').checked;
+      const sequelText = isSequel ? document.getElementById('sequel-input').value.trim() : '';
+
+      if (!selectedBook) {
+        showToast('Selecciona o introduce los datos de un libro primero', 'error');
+        return;
+      }
+
+      if (reviewText.length < 20) {
+        showToast('Por favor, escribe una reseña más detallada (mínimo 20 caracteres)', 'error');
+        document.getElementById('input-review').focus();
+        return;
+      }
+
+      const activeTags = Array.from(document.querySelectorAll('#form-tags-container .tag-btn.text-white')).map(b => b.innerText.replace('#', ''));
+
+      const newReview = {
+        bookId: selectedBook.id,
+        bookTitle: selectedBook.title,
+        author: selectedBook.author,
+        rating: currentRating,
+        ratingDecimal: currentRating + '.0',
+        ratingLabel: currentRating === 5 ? 'Excelente' : 'Muy bueno',
+        synopsis: synopsis || 'Resumen disponible en el expositorio escolar.',
+        reviewText: reviewText,
+        highlightVerdict: highlight,
+        tags: activeTags.length > 0 ? activeTags : ['Lectura escolar'],
+        stage: 'secundaria',
+        ageRange: selectedBook.ageRange || '14',
+        genre: selectedBook.genre || 'misterio'
+      };
+
+      const created = window.appStore.addReview(newReview);
+      window.appStore.clearDraft();
+
+      // Abrir modal de éxito
+      document.getElementById('success-btn-detail').href = `detalle.html?id=${created.id}`;
+      document.getElementById('success-modal').classList.remove('hidden');
+    }
+
+    // Guardar borrador
+    function handleSaveDraft() {
+      const draftData = {
+        selectedBook,
+        rating: currentRating,
+        synopsis: document.getElementById('input-synopsis').value,
+        reviewText: document.getElementById('input-review').value,
+        highlight: document.getElementById('input-highlight').value
+      };
+      window.appStore.saveDraft(draftData);
+      showToast('Borrador guardado en este navegador', 'success');
+    }
+
+    function restoreDraft(draft) {
+      if (draft.selectedBook) selectBook(draft.selectedBook);
+      if (draft.rating) setRating(draft.rating);
+      if (draft.synopsis) document.getElementById('input-synopsis').value = draft.synopsis;
+      if (draft.reviewText) document.getElementById('input-review').value = draft.reviewText;
+      if (draft.highlight) document.getElementById('input-highlight').value = draft.highlight;
+      updateLivePreview();
+      showToast('Borrador recuperado correctamente');
+    }
+
+    function handleResetForm() {
+      if (confirm('¿Estás seguro de que deseas limpiar los campos del formulario?')) {
+        document.getElementById('input-review').value = '';
+        document.getElementById('input-synopsis').value = '';
+        document.getElementById('input-highlight').value = '';
+        setRating(5);
+        updateLivePreview();
+        showToast('Formulario restablecido');
+      }
+    }
+  </script>
+</body>
+</html>
